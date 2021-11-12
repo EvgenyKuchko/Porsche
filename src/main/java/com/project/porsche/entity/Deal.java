@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name = "deal")
 public class Deal {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String status;
     private Date creatingDate;
