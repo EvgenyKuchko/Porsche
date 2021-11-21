@@ -11,14 +11,10 @@ public class Deal {
     private long id;
     private String status;
     private Date creatingDate;
-    @ManyToOne
-    @MapsId("id")
-    @JoinColumn(name = "user_id")
-    private User user;
-    @ManyToOne
-    @MapsId("id")
-    @JoinColumn(name = "car_id")
-    private Car car;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "form_id", referencedColumnName = "id")
+    private Form form;
 
     public Deal() {
     }
@@ -29,22 +25,6 @@ public class Deal {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
     }
 
     public String getStatus() {
@@ -63,14 +43,21 @@ public class Deal {
         this.creatingDate = creatingDate;
     }
 
+    public Form getForm() {
+        return form;
+    }
+
+    public void setForm(Form form) {
+        this.form = form;
+    }
+
     @Override
     public String toString() {
         return "Deal{" +
                 "id=" + id +
                 ", status='" + status + '\'' +
                 ", creatingDate=" + creatingDate +
-                ", user=" + user +
-                ", car=" + car +
+                ", form=" + form +
                 '}';
     }
 }

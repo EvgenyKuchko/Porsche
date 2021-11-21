@@ -1,21 +1,23 @@
 package com.project.porsche.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
 
 @Entity
 @Table(name = "role")
-public class Role {
+public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private Collection<User> users;
+    @ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<User> users;
 
-    public Role(long l, String role_user) {
+    public Role(long l, String name) {
     }
 
     public Role() {
@@ -37,12 +39,17 @@ public class Role {
         this.name = name;
     }
 
-    public Collection<User> getUsers() {
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Collection<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String getAuthority() {
+        return getName();
     }
 
     @Override

@@ -1,16 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: User
-  Date: 12.11.2021
-  Time: 16:49
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Сделка</title>
 </head>
 <body>
-
+<center>
+    <h2>Спасибо за то, что выбрали Porsche.
+        <br>
+        Наш специалист в ближайшее время с вами свяжется</h2>
+    <a href="/main">Главная страница</a>
+</center>
 </body>
 </html>

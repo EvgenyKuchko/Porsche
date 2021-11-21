@@ -5,9 +5,10 @@ import com.project.porsche.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class MainPageController {
+public class LoginController {
 
     @Autowired
     private UserService userService;
@@ -15,8 +16,9 @@ public class MainPageController {
     @Autowired
     private SecurityService securityService;
 
-    @GetMapping("/main")
-    public String showMainPage(){
-        return "main";
+    @GetMapping("/login")
+    public String showLoginForm(){
+        return "login";
     }
+
 }
