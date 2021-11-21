@@ -12,9 +12,16 @@ public class Form {
     private String city;
     private String phoneNumber;
 
+    @OneToOne(mappedBy = "form")
+    private Deal deal;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "car_id", nullable = false)
+    private Car car;
 
     public Form() {}
 
@@ -58,6 +65,14 @@ public class Form {
         this.user = user;
     }
 
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
     @Override
     public String toString() {
         return "Form{" +
@@ -66,6 +81,7 @@ public class Form {
                 ", city='" + city + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", user=" + user +
+                ", car=" + car +
                 '}';
     }
 }

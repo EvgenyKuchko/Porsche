@@ -25,10 +25,16 @@ public class Car {
     private float fuelTankVolume;
     private float fuelConsInTheCity;
     private float fuelConsOutsideTheCity;
-    private float CombinedFuelCons;
+    private float combinedFuelCons;
+    private String bodyType;
+    private int numberOfDoors;
+    private int yearOfManufacture;
+    private int engineDisplacement;
+    private String typeOfTransmission;
+    private String driveType;
 
     @OneToMany(mappedBy = "car")
-    private Set<Deal> deals;
+    private Set<Form> forms;
 
     public Car() {}
 
@@ -169,19 +175,67 @@ public class Car {
     }
 
     public float getCombinedFuelCons() {
-        return CombinedFuelCons;
+        return combinedFuelCons;
     }
 
     public void setCombinedFuelCons(float combinedFuelCons) {
-        CombinedFuelCons = combinedFuelCons;
+        this.combinedFuelCons = combinedFuelCons;
     }
 
-    public Set<Deal> getDeals() {
-        return deals;
+    public String getBodyType() {
+        return bodyType;
     }
 
-    public void setDeals(Set<Deal> deals) {
-        this.deals = deals;
+    public void setBodyType(String bodyType) {
+        this.bodyType = bodyType;
+    }
+
+    public int getNumberOfDoors() {
+        return numberOfDoors;
+    }
+
+    public void setNumberOfDoors(int numberOfDoors) {
+        this.numberOfDoors = numberOfDoors;
+    }
+
+    public int getYearOfManufacture() {
+        return yearOfManufacture;
+    }
+
+    public void setYearOfManufacture(int yearOfManufacture) {
+        this.yearOfManufacture = yearOfManufacture;
+    }
+
+    public int getEngineDisplacement() {
+        return engineDisplacement;
+    }
+
+    public void setEngineDisplacement(int engineDisplacement) {
+        this.engineDisplacement = engineDisplacement;
+    }
+
+    public String getTypeOfTransmission() {
+        return typeOfTransmission;
+    }
+
+    public void setTypeOfTransmission(String typeOfTransmission) {
+        this.typeOfTransmission = typeOfTransmission;
+    }
+
+    public String getDriveType() {
+        return driveType;
+    }
+
+    public void setDriveType(String driveType) {
+        this.driveType = driveType;
+    }
+
+    public Set<Form> getForms() {
+        return forms;
+    }
+
+    public void setForms(Set<Form> forms) {
+        this.forms = forms;
     }
 
     @Override
@@ -204,8 +258,14 @@ public class Car {
                 ", fuelTankVolume=" + fuelTankVolume +
                 ", fuelConsInTheCity=" + fuelConsInTheCity +
                 ", fuelConsOutsideTheCity=" + fuelConsOutsideTheCity +
-                ", CombinedFuelCons=" + CombinedFuelCons +
-                ", deals=" + deals +
+                ", combinedFuelCons=" + combinedFuelCons +
+                ", bodyType='" + bodyType + '\'' +
+                ", numberOfDoors=" + numberOfDoors +
+                ", yearOfManufacture=" + yearOfManufacture +
+                ", engineDisplacement=" + engineDisplacement +
+                ", typeOfTransmission='" + typeOfTransmission + '\'' +
+                ", driveType='" + driveType + '\'' +
+                ", forms=" + forms +
                 '}';
     }
 }
