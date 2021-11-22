@@ -27,21 +27,18 @@ public class FormController {
     private UserService userService;
 
     @GetMapping("/{model}")
-    public String showForm(@PathVariable String model, Model mod, Authentication authentication, Form form){
+    public String showForm(@PathVariable String model, Model mod, Authentication authentication){
+        Form form = new Form();
         form.setCar(carService.getCarByModel(model));
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         form.setUser(userService.getUserByLogin(userDetails.getUsername()));
-        mod.addAttribute("form", new Form());
+//        formService.saveForm(form); // эта часть сохранит форму только с юзером и авто
+        mod.addAttribute("form", form);
         return "form";
     }
 
     @PostMapping("/{model}")
-    public String saveNewForm(Form form, Authentication authentication, @PathVariable String model){
-//        Car car = carService.getCarByModel(model);
-//        System.out.println("car: " + car.getPrice());
-//        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//        User user = userService.getUserByLogin(userDetails.getUsername());
-//        System.out.println("User: " + user.getFirstName());
+    public String saveNewForm(Form form){
         formService.saveForm(form);
         return "redirect:/deal";
     }
