@@ -27,10 +27,6 @@
         <form:errors path="phoneNumber"></form:errors>
     </div>
 
-    <div>
-        <form:input path=""
-    </div>
-
     <div><input type="submit" value="Оформить заказ"/></div>
 </form:form>
 <br>
