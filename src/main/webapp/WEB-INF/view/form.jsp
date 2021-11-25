@@ -7,7 +7,8 @@
 </head>
 <body>
 <h1>Форма для доставки</h1>
-<form:form action="/form/{model}" modelAttribute="form"  method="post">
+
+<form:form action="/form/{model}" modelAttribute="deal"  method="post">
 
     <div>
         <form:label path="city">City:</form:label>
@@ -25,6 +26,22 @@
         <form:label path="phoneNumber">Phone Number:</form:label>
         <form:input path="phoneNumber" id="phoneNumber"/>
         <form:errors path="phoneNumber"></form:errors>
+    </div>
+
+    <div>
+        <form:hidden path="creatingDate" id="date" value="${date}" />
+    </div>
+
+    <div>
+        <form:hidden path="status" id="status" value="Active"/>
+    </div>
+
+    <div>
+        <form:hidden path="car" id="car" value="${car.id}" />
+    </div>
+
+    <div>
+        <form:hidden path="user" id="user" value="${user.id}"/>
     </div>
 
     <div><input type="submit" value="Оформить заказ"/></div>

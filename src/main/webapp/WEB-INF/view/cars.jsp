@@ -1,7 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Автомобили</title>
+    <link href="<c:url value="/theme/css/main.css" />" rel="stylesheet" type="text/css">
 </head>
 <body>
 <h1>Линейка автомобилей</h1>

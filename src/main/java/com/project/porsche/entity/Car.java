@@ -33,8 +33,8 @@ public class Car {
     private String typeOfTransmission;
     private String driveType;
 
-    @OneToMany(mappedBy = "car")
-    private Set<Form> forms;
+    @OneToMany(mappedBy = "car", cascade = CascadeType.REFRESH)
+    private Set<Deal> deals;
 
     public Car() {}
 
@@ -230,12 +230,12 @@ public class Car {
         this.driveType = driveType;
     }
 
-    public Set<Form> getForms() {
-        return forms;
+    public Set<Deal> getForms() {
+        return deals;
     }
 
-    public void setForms(Set<Form> forms) {
-        this.forms = forms;
+    public void setForms(Set<Deal> deals) {
+        this.deals = deals;
     }
 
     @Override
@@ -265,7 +265,7 @@ public class Car {
                 ", engineDisplacement=" + engineDisplacement +
                 ", typeOfTransmission='" + typeOfTransmission + '\'' +
                 ", driveType='" + driveType + '\'' +
-                ", forms=" + forms +
+                ", forms=" + deals +
                 '}';
     }
 }
