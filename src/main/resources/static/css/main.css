@@ -1,8 +1,9 @@
 body {
-    font-family: Impact, sans-serif;
+    font-family: "Brush Script MT", sans-serif;
     margin: 0;
     padding: 0;
-    background: slategray;
+    background: url("/static/img/back.jpg");
+    background-size: 2000px;
 }
 
 div, p, input, button, form, span, a, ul, li {
@@ -13,29 +14,82 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-.container {
-    margin: 0 auto;
-}
-
 .header {
-    background: #403047;
-    height: 120px;
-    padding-top: 5px;
+    height: 150px;
+    padding: 5px 15px 10px;
 }
 
-.logo {
-    color: black;
-    border: 5px solid black;
-    width: 200px;
-    font-size: 60px;
+.wrapper {
+    display: flex;
 }
 
-.logoTwo {
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
     color: black;
-    font-size: 20px;
-    margin-top: 1px;
+    size: 300px;
+    padding-top: 30px;
+}
+
+.logoText {
+    font-family: "Brush Script MT", sans-serif;
+    font-size: 150px;
+    color: darkorange;
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .logoImg {
-    height: 100px;
+    height: 150px;
+}
+
+.btnR {
+    color: #fff;
+    display: block;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.security {
+    font-family: monospace;
+    font-size: 15px;
+    color: white;
+    padding-top: 30px;
+    padding-left: 10px;
+}
+
+.cars {
+    margin-top: 50px;
+}
+
+.info {
+    font-family: monospace;
+    color: white;
+    font-size: 20px;
+    size: 200px;
+    margin-top: 5px;
+}
+
+.links {
+    color: darkorange;
+    display: block;
+}
+
+.managerLink {
+    color: red;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.footer {
+    font-family: monospace;
+    text-align: left;
+    color: white;
+    font-size: 10px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }

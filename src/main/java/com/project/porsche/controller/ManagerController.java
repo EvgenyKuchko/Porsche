@@ -32,9 +32,9 @@ public class ManagerController {
 
     @PostMapping("/saveDeal")
     public String saveDeal(@ModelAttribute("deal") Deal deal, @RequestParam("dealId") Long dealId){
-        Deal deal1 = dealService.getDeal(dealId);
-        deal1.setStatus(deal.getStatus());
-        dealService.saveDeal(deal1);
+        Deal dealChanged = dealService.getDeal(dealId);
+        dealChanged.setStatus(deal.getStatus());
+        dealService.saveDeal(dealChanged);
         return "redirect:/manager/list";
     }
 }

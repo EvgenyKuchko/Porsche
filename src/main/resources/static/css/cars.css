@@ -1,0 +1,106 @@
+body {
+    font-family: "Brush Script MT", sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url("/static/img/cars-bg.jpg");
+    background-size: 2200px;
+}
+
+
+div, p, input, button, form, span, a, ul, li {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.p {
+    line-height: 0.5em;
+}
+
+.header {
+    height: 150px;
+    padding: 5px 15px 10px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.logoText {
+    font-family: "Brush Script MT", sans-serif;
+    font-size: 150px;
+    color: darkorange;
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logoImg {
+    height: 150px;
+}
+
+.btnR {
+    color: #fff;
+    display: block;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.security {
+    font-family: monospace;
+    font-size: 15px;
+    color: white;
+    padding-top: 30px;
+    padding-left: 10px;
+}
+
+.managerLink {
+    color: red;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.container {
+    text-align: center;
+    color: black;
+    size: 300px;
+    padding-top: 30px;
+}
+
+.model-title {
+    text-decoration: underline;
+    color: black;
+    font-size: 50px;
+}
+
+.info-about-model {
+    font-family: Gabriola, sans-serif;
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+    width: 700px;
+    margin-left: 390px;
+}
+
+.model-link {
+    font-size: 30px;
+    padding-top: 0px;
+    color: #fff;
+}
+
+.main-page-link {
+    color: #ffffff;
+    display: block;
+}
+
+.footer {
+    font-family: monospace;
+    text-align: left;
+    color: white;
+    font-size: 10px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

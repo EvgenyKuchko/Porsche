@@ -25,14 +25,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder(8);
     }
-// доделать
+
+    // доделать
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()   //Включаем авторизацию
-                .antMatchers("/","/static/**", "/registration",
-                        "/main", "/cars", "/model/*", "/news", "/contactInfo",
-                        "/aboutCompany", "/h2-console/**").permitAll()  //указываем, для каких страниц есть доступ у всех
+                .antMatchers("/", "/static/**", "/registration",
+                        "/main", "/cars", "/model/*", "/news", "/aboutCompany",
+                        "/about-company", "/news", "/contacts", "/h2-console/**").permitAll()  //указываем, для каких страниц есть доступ у всех
                 .antMatchers("/manager/**").hasAuthority("MANAGER")
                 .antMatchers("/form").hasAuthority("USER")
                 .anyRequest().authenticated()  //а для всех остальных запросов мы требуем авторизацию
