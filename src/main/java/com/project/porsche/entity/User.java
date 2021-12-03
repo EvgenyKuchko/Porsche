@@ -17,17 +17,19 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NotNull
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 15, message = "Имя должно состоять из 2 или более символов")
     private String firstName;
     @NotNull
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 20, message = "Фамилия должна состоять из 2 или символов")
     private String lastName;
     @NotNull
     @Min(value = 18, message = "возраст не может быть меньше 18")
     private int age;
     @NotNull
+    @Size(min = 5, message = "Логин должен состоять из 5 или более символов")
     private String login;
     @NotNull
+    @Size(min = 5, message = "Пароль должен состоять из 5 или символов")
     private String password;
 
     @OneToMany(mappedBy = "user")
