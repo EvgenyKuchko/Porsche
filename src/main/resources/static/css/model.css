@@ -1,0 +1,146 @@
+body {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    background: url("/static/img/model-bg.jpg");
+    background-size: 2500px;
+}
+
+div, p, input, button, form, span, a, ul, li {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.p {
+    line-height: 0.5em;
+}
+
+.header {
+    height: 150px;
+    padding: 5px 15px 10px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.logoText {
+    font-family: "Brush Script MT", sans-serif;
+    font-size: 150px;
+    color: darkorange;
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logoImg {
+    height: 150px;
+}
+
+.btnR {
+    color: #fff;
+    display: block;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.security {
+    font-family: monospace;
+    font-size: 15px;
+    color: white;
+    padding-top: 30px;
+    padding-left: 10px;
+}
+
+.managerLink {
+    color: red;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.container {
+    text-align: left;
+    color: #fff;
+    size: 300px;
+    padding-left: 30px;
+}
+
+.title-info {
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.model-name {
+    color: darkorange;
+    font-size: 60px;
+}
+
+.top-desc {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    color: black;
+    size: 400px;
+    font-size: 25px;
+    padding-top: 20px;
+}
+
+.desc-info {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.char-top {
+    color: #fff;
+    font-size: 30px;
+}
+
+.title {
+    text-decoration: underline;
+    color: black;
+    font-size: 30px;
+}
+
+.char {
+    color: #fff;
+    font-size: 20px;
+}
+
+.order-btn {
+    font-family: Impact, sans-serif;
+    background: #fff;
+    color: black;
+    display: block;
+    text-decoration: none;
+    border-radius: 300px;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.container-links {
+    display: block;
+    font-size: 20px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.links {
+    color: #fff;
+    display: block;
+}
+
+.footer {
+    font-family: monospace;
+    text-align: left;
+    color: white;
+    font-size: 10px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

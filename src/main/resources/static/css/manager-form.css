@@ -1,0 +1,76 @@
+body {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    background: url("/static/img/manager-bg.jpg");
+    background-size: 1500px;
+}
+
+div, p, input, button, form, span, a, ul, li {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.container {
+    text-align: left;
+    margin: 0 auto;
+    padding-left: 100px;
+    padding-top: 100px;
+    font-size: 20px;
+}
+
+.header {
+    height: 150px;
+    padding: 5px 15px 10px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.logoText {
+    font-family: "Brush Script MT", sans-serif;
+    font-size: 150px;
+    color: darkorange;
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logoImg {
+    height: 150px;
+}
+
+.btnR {
+    color: #fff;
+    display: block;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.security {
+    font-family: monospace;
+    font-size: 15px;
+    color: white;
+    padding-top: 30px;
+    padding-left: 10px;
+}
+
+.manager-list-link {
+    color: #fff;
+    display: block;
+}
+
+.footer {
+    font-family: monospace;
+    text-align: left;
+    color: black;
+    position: fixed;
+    font-size: 10px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

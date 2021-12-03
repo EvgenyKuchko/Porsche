@@ -28,18 +28,12 @@ create table car
 );
 create table deal
 (
-    id            bigint not null auto_increment,
-    creating_date datetime(6),
-    status        varchar(255),
-    form_id       bigint,
-    primary key (id)
-);
-create table form
-(
     id           bigint not null auto_increment,
     city         varchar(255),
     country      varchar(255),
     phone_number varchar(255),
+    creating_date datetime(6),
+    status        varchar(255),
     car_id       bigint not null,
     user_id      bigint not null,
     primary key (id)
@@ -66,11 +60,9 @@ create table user_role
     role_id bigint not null
 );
 alter table deal
-    add constraint deal_form_fk foreign key (form_id) references form (id);
-alter table form
-    add constraint form_car_fk foreign key (car_id) references car (id);
-alter table form
-    add constraint form_user_fk foreign key (user_id) references user (id);
+    add constraint deal_car_fk foreign key (car_id) references car (id);
+alter table deal
+    add constraint deal_user_fk foreign key (user_id) references user (id);
 alter table user_role
     add constraint user_role_role_fk foreign key (role_id) references role (id);
 alter table user_role

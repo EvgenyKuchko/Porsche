@@ -26,17 +26,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder(8);
     }
 
+    // доделать
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()   //Включаем авторизацию
-                .antMatchers("/", "/registration", "/main", "/cars", "/model/*", "/news", "/contactInfo", "/aboutCompany").permitAll()  //указываем, для каких страниц есть доступ у всех
-                .antMatchers("/manager").hasAuthority("MANAGER")
-                .antMatchers("/deal").hasAuthority("USER")
+                .antMatchers("/", "/static/**", "/registration",
+                        "/main", "/cars", "/model/*", "/news", "/aboutCompany",
+                        "/about-company", "/news", "/contacts", "/h2-console/**").permitAll()  //указываем, для каких страниц есть доступ у всех
+                .antMatchers("/manager/**").hasAuthority("MANAGER")
+                .antMatchers("/form").hasAuthority("USER")
                 .anyRequest().authenticated()  //а для всех остальных запросов мы требуем авторизацию
                 .and()
                 .formLogin()  // включаем форму Login (из нашего шаблона MvcConfig
-                .loginPage("/login")  // указываем, что форма Login находится по данномк мепингу
+                .loginPage("/login")  // указываем, что форма Login находится по данному мепингу
                 .defaultSuccessUrl("/main")  // перенаправление на главную страницу после успешного входа
                 .permitAll()  // указываем, что формой логина могут пользоваться все
                 .and()

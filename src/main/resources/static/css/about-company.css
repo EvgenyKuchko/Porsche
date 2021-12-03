@@ -1,0 +1,118 @@
+body {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    background: black;
+}
+
+div, p, input, button, form, span, a, ul, li {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+.header {
+    height: 150px;
+    padding: 5px 15px 10px;
+}
+
+.wrapper {
+    display: flex;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    color: black;
+    size: 300px;
+    padding-top: 30px;
+}
+
+.logoText {
+    font-family: "Brush Script MT", sans-serif;
+    font-size: 150px;
+    color: darkorange;
+    width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logoImg {
+    height: 150px;
+}
+
+.btnR {
+    color: #fff;
+    display: block;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.security {
+    font-family: monospace;
+    font-size: 15px;
+    color: white;
+    padding-top: 30px;
+    padding-left: 10px;
+}
+
+.managerLink {
+    text-align: center;
+    padding-top: 5px;
+}
+
+section {
+    margin-top: 50px;
+    margin-left: 50px;
+    text-align: center;
+}
+
+.information {
+    height: 2388px;
+    width: 1425px;
+    background: url("/static/img/about-company-bg.png");
+    background-size: 1425px;
+    padding-top: 10px;
+}
+
+.inf {
+    color: #fff;
+    font-size: 18px;
+}
+
+.info-one {
+    padding-left: 110px;
+    padding-top: 50px;
+    width: 850px;
+}
+
+.info-two {
+    padding-top: 500px;
+    margin-left: 650px;
+    width: 750px;
+    height: 445px;
+}
+
+.info-three {
+    padding-top: 840px;
+
+}
+
+.main-page-link {
+    color: #ffffff;
+    display: block;
+    font-size: 20px;
+}
+
+.footer {
+    font-family: monospace;
+    text-align: left;
+    color: white;
+    font-size: 10px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

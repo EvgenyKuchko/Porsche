@@ -31,7 +31,7 @@ public class User implements UserDetails {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private Set<Form> forms;
+    private Set<Deal> deals;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -89,12 +89,12 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Set<Form> getForms() {
-        return forms;
+    public Set<Deal> getDeals() {
+        return deals;
     }
 
-    public void setForms(Set<Form> forms) {
-        this.forms = forms;
+    public void setDeals(Set<Deal> deals) {
+        this.deals = deals;
     }
 
     public Set<Role> getRoles() {
@@ -148,7 +148,7 @@ public class User implements UserDetails {
                 ", age=" + age +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", forms=" + forms +
+                ", deals=" + deals +
                 ", roles=" + roles +
                 '}';
     }
