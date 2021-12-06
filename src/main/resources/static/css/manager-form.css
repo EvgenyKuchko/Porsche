@@ -55,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: monospace;
     font-size: 15px;
     color: white;
-    padding-top: 30px;
+    padding-top: 10px;
     padding-left: 10px;
 }
 
@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5, h6 {
 .footer {
     font-family: monospace;
     text-align: left;
-    color: black;
+    color: #fff;
     position: fixed;
     font-size: 10px;
     left: 0;

@@ -1,5 +1,5 @@
 body {
-    font-family: "Brush Script MT", sans-serif;
+    font-family: monospace;
     margin: 0;
     padding: 0;
     background: url("/static/img/log.jpg");
@@ -45,7 +45,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .registration {
-    font-family: "Brush Script MT",sans-serif;
     color: #ffffff;
     font-size: 15px;
     padding-top: 5px;
@@ -59,4 +58,15 @@ h1, h2, h3, h4, h5, h6 {
 .main-page-link {
     color: #ffffff;
     display: block;
+}
+
+.footer {
+    font-family: monospace;
+    text-align: left;
+    color: white;
+    position: fixed;
+    font-size: 10px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }

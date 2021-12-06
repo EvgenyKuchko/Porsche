@@ -24,7 +24,7 @@ public class ManagerController {
     }
 
     @GetMapping ("/updateForm")
-    public String updateCourse(@RequestParam("dealId") Long dealId, Model model){
+    public String updateCourse(@RequestParam ("dealId") Long dealId, Model model){
         Deal deal = dealService.getDeal(dealId);
         model.addAttribute(deal);
         return "manager-form";

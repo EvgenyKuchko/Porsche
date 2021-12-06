@@ -1,6 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<spring:message code=""/>
 <html>
 <head>
     <title><c:out value="${car.model}"/></title>
@@ -18,22 +20,26 @@
                 <h1 class="logoText">Porsche</h1>
             </div>
             <div class="security" id="security">
+                <div class="l10n" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="?lang=en"><spring:message code="app.lang.english"/></a>
+                    <a class="dropdown-item" href="?lang=ru"><spring:message code="app.lang.russian"/></a>
+                </div>
                 <c:if test="${pageContext.request.userPrincipal.name != null}">
                     <deal id="logoutForm" method="POST" action="/logout">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </deal>
                     <div class="userName">
-                        <h4>Приветствуем вас,<br> ${pageContext.request.userPrincipal.name}
-                            <a href="<c:url value='/logout' />" class="btnR">Выйти из аккаунта</a><br>
+                        <h4><spring:message code="app.greeting"/>,<br> ${pageContext.request.userPrincipal.name}
+                            <a href="<c:url value='/logout' />" class="btnR"><spring:message code="app.logout"/></a><br>
                         </h4>
                     </div>
                 </c:if>
                 <sec:authorize access="!isAuthenticated()">
-                    <h4><a href="/login" class="btnR">Вход в аккаунт</a></h4>
+                    <h4><a href="/login" class="btnR"><spring:message code="app.login"/></a></h4>
                 </sec:authorize>
                 <div class="managerLink" id="managerLink">
                     <sec:authorize access="hasAuthority('MANAGER')">
-                        <a href="/manager/list"><h3>Сделки</h3></a>
+                        <a href="/manager/list"><h3><spring:message code="app.deals"/></h3></a>
                     </sec:authorize>
                 </div>
             </div>
@@ -47,15 +53,15 @@
     <div class="top-desc">
         <div class="wrapper">
             <div class="desc-info">
-                <h2 class="title">Стоимость от (USD):</h2>
+                <h2 class="title"><spring:message code="app.model.price"/></h2>
                 <p class="char-top"><c:out value="${car.price}"/></p>
             </div>
             <div class="desc-info">
-                <h2 class="title">Мощность(л.с.): </h2>
+                <h2 class="title"><spring:message code="app.model.power"/></h2>
                 <p class="char-top"><c:out value="${car.power}"/></p>
             </div>
             <div class="desc-info">
-                <h2 class="title">Максимальная скорость, км/ч:</h2>
+                <h2 class="title"><spring:message code="app.model.maxSpeed"/></h2>
                 <p class="char-top"><c:out value="${car.maxSpeed}"/></p>
             </div>
         </div>
@@ -63,73 +69,73 @@
 </section>
 <section class="engine-sec">
     <div class="container">
-        <h2 class="title">Двигатель</h2>
+        <h2 class="title"><spring:message code="app.model.engine"/></h2>
         <div class="char">
-            <p>Объем: <c:out value="${car.engineDisplacement}"/></p>
-            <p>Тип топлива: <c:out value="${car.fuelType}"/></p>
+            <p><spring:message code="app.model.engine.val"/> <c:out value="${car.engineDisplacement}"/></p>
+            <p><spring:message code="app.model.engine.fuelType"/> <c:out value="${car.fuelType}"/></p>
         </div>
     </div>
 </section>
 <section class="body-sec">
     <div class="container">
-        <h2 class="title">Кузов</h2>
+        <h2 class="title"><spring:message code="app.model.body"/></h2>
         <div class="char">
-            <p>Тип кузова: <c:out value="${car.bodyType}"/></p>
-            <p>Количество мест: <c:out value="${car.places}"/></p>
-            <p>Длина, м: <c:out value="${car.length}"/></p>
-            <p>Высота, м: <c:out value="${car.height}"/></p>
-            <p>Вес, кг: <c:out value="${car.weight}"/></p>
-            <p>Полезная загрузка, кг: <c:out value="${car.payload}"/></p>
-            <p>Количетсво дверей: <c:out value="${car.numberOfDoors}"/></p>
-            <p>Материал салона: <c:out value="${car.interior}"/></p>
+            <p><spring:message code="app.model.body.type"/> <c:out value="${car.bodyType}"/></p>
+            <p><spring:message code="app.model.body.passengers"/> <c:out value="${car.places}"/></p>
+            <p><spring:message code="app.model.body.length"/> <c:out value="${car.length}"/></p>
+            <p><spring:message code="app.model.body.height"/> <c:out value="${car.height}"/></p>
+            <p><spring:message code="app.model.body.weight"/> <c:out value="${car.weight}"/></p>
+            <p><spring:message code="app.model.body.payload"/> <c:out value="${car.payload}"/></p>
+            <p><spring:message code="app.model.body.doors"/> <c:out value="${car.numberOfDoors}"/></p>
+            <p><spring:message code="app.model.body.interior"/> <c:out value="${car.interior}"/></p>
         </div>
     </div>
 </section>
 <section class="expl-sec">
     <div class="container">
-        <h2 class="title">Эксплуатационные характеристики</h2>
+        <h2 class="title"><spring:message code="app.model.perf"/></h2>
         <div class="char">
-            <p>Разгон от 0 до 100 км/ч, с: <c:out value="${car.acceleration}"/></p>
-            <p>Расход топлива на 100 км в городе, л: <c:out value="${car.fuelConsInTheCity}"/></p>
-            <p>Расход топлива на 100 км за городом, л: <c:out value="${car.fuelConsOutsideTheCity}"/></p>
-            <p>Комбинированный расход топлива на 100 км, л: <c:out value="${car.combinedFuelCons}"/></p>
-            <p>Объем топливного бака, л: <c:out value="${car.fuelTankVolume}"/></p>
+            <p><spring:message code="app.model.perf.acceleration"/> <c:out value="${car.acceleration}"/></p>
+            <p><spring:message code="app.model.perf.inCity"/> <c:out value="${car.fuelConsInTheCity}"/></p>
+            <p><spring:message code="app.model.perf.outCity"/> <c:out value="${car.fuelConsOutsideTheCity}"/></p>
+            <p><spring:message code="app.model.perf.comb"/> <c:out value="${car.combinedFuelCons}"/></p>
+            <p><spring:message code="app.model.perf.fuelVol"/> <c:out value="${car.fuelTankVolume}"/></p>
         </div>
     </div>
 </section>
 <section class="transmission-sec">
     <div class="container">
-        <h2 class="title">Трансмиссия</h2>
+        <h2 class="title"><spring:message code="app.model.transmission"/></h2>
         <div class="char">
-            <p>Тип коробки передач: <c:out value="${car.typeOfTransmission}"/></p>
-            <p>Количество передач: <c:out value="${car.transmission}"/></p>
-            <p>Тип привода: <c:out value="${car.driveType}"/></p>
+            <p><spring:message code="app.model.transmission.type"/> <c:out value="${car.typeOfTransmission}"/></p>
+            <p><spring:message code="app.model.transmission.numb"/> <c:out value="${car.transmission}"/></p>
+            <p><spring:message code="app.model.transmission.drType"/> <c:out value="${car.driveType}"/></p>
         </div>
     </div>
 </section>
 <section class="manuf-sec">
     <div class="container">
-        <h2 class="title">Производство</h2>
+        <h2 class="title"><spring:message code="app.model.manufacture"/></h2>
         <div class="char">
-            <p>Год выпуска: <c:out value="${car.yearOfManufacture}"/></p>
+            <p><spring:message code="app.model.manufacture.year"/> <c:out value="${car.yearOfManufacture}"/></p>
         </div>
     </div>
 </section>
 <section class="order-sec">
     <div class="container-links">
-        <a href="/form/<c:out value="${car.model}"/>" class="order-btn">Оформить заказ</a>
+        <a href="/form/<c:out value="${car.model}"/>" class="order-btn"><spring:message code="app.model.order"/></a>
     </div>
 </section>
 <section class="links-sec">
     <div class="container-links">
-        <a href="/cars" class="links">Автомобили</a>
+        <a href="/cars" class="links"><spring:message code="app.model.link.car"/></a>
         <br>
-        <a href="/main" class="links">На главную страницу</a>
+        <a href="/main" class="links"><spring:message code="app.link.main.page"/></a>
     </div>
 </section>
 <footer class="footer">
     <div class="footer-info">
-        <p>Информация взята из официальных источников</p>
+        <p><spring:message code="app.footer"/></p>
     </div>
 </footer>
 </body>

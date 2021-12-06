@@ -1,5 +1,5 @@
 body {
-    font-family: "Brush Script MT", sans-serif;
+    font-family: monospace;
     margin: 0;
     padding: 0;
     background: url("/static/img/back.jpg");
@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: monospace;
     font-size: 15px;
     color: white;
-    padding-top: 30px;
+    padding-top: 10px;
     padding-left: 10px;
 }
 
@@ -75,12 +75,18 @@ h1, h2, h3, h4, h5, h6 {
 .links {
     color: darkorange;
     display: block;
+    font-size: 20px;
 }
 
 .managerLink {
     color: red;
     text-align: center;
     padding-top: 5px;
+}
+
+.l10n {
+    color: red;
+    text-align: center;
 }
 
 .footer {
