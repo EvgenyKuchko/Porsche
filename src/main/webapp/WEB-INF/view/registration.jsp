@@ -1,33 +1,45 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<spring:message code=""/>
 <html>
 <head>
-    <title>Регистрация</title>
+    <spring:message code="app.reg.form.first.name" var="firstName"/>
+    <spring:message code="app.reg.form.last.name" var="lastName"/>
+    <spring:message code="app.reg.form.age" var="age"/>
+    <spring:message code="app.reg.form.login" var="login"/>
+    <spring:message code="app.reg.form.password" var="password"/>
+    <title><spring:message code="app.reg.title"/></title>
     <link rel="stylesheet" href="/static/css/registration.css" type="text/css"/>
 </head>
 <body>
 <div class="container">
     <div class="title">
-        <h1>Регистрация пользователя</h1>
+        <h1><spring:message code="app.reg.title"/></h1>
     </div>
     <div class="info">
-        <p>Для успешной регистрации необходимо<br> заполнить ВСЕ поля</p>
+        <p><spring:message code="app.reg.info"/></p>
     </div>
     <form:form action="/registration" method="post" modelAttribute="user">
-        <form:input path="firstName" type="text" placeholder="Имя" class="form-control"></form:input>
+        <form:input path="firstName" type="text" placeholder="${firstName}" class="form-control"></form:input>
         <form:errors path="firstName" class="err"/> <br>
-        <form:input path="lastName" type="text" placeholder="Фамилия" class="form-control"></form:input>
+        <form:input path="lastName" type="text" placeholder="${lastName}" class="form-control"></form:input>
         <form:errors path="lastName" class="err"/> <br>
-        <form:input path="age" type="number" placeholder="Возраст" class="form-control"></form:input>
+        <form:input path="age" type="number" placeholder="${age}" class="form-control"></form:input>
         <form:errors path="age" class="err"/> <br>
-        <form:input path="login" type="text" placeholder="Логин" class="form-control"></form:input>
+        <form:input path="login" type="text" placeholder="${login}" class="form-control"></form:input>
         <form:errors path="login" class="err"/> <br>
-        <form:input path="password" type="password" placeholder="Пароль" class="form-control"></form:input>
+        <form:input path="password" type="password" placeholder="${password}" class="form-control"></form:input>
         <form:errors path="password" class="err"/> <br>
-        <button class="btn-submit" type="submit">Регистрация</button>
+        <button class="btn-submit" type="submit"><spring:message code="app.reg.submit"/></button>
     </form:form>
-    <a href="/main" class="main-page-link"><h2>На главную страницу</h2></a>
+    <a href="/main" class="main-page-link"><h2><spring:message code="app.link.main.page"/></h2></a>
 </div>
+<footer class="footer">
+    <div class="footer-info">
+        <p><spring:message code="app.footer"/></p>
+    </div>
+</footer>
 </body>
 </html>

@@ -2,12 +2,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<spring:message code=""/>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <html lang="en">
 <head>
-    <title>Главная страница</title>
+    <title><spring:message code="app.main.title"/></title>
     <link rel="stylesheet" href="/static/css/main.css" type="text/css"/>
 </head>
 <body>
@@ -21,22 +21,26 @@
                 <h1 class="logoText">Porsche</h1>
             </div>
             <div class="security" id="security">
+                <div class="l10n" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="?lang=en"><spring:message code="app.lang.english"/></a>
+                    <a class="dropdown-item" href="?lang=ru"><spring:message code="app.lang.russian"/></a>
+                </div>
                 <c:if test="${pageContext.request.userPrincipal.name != null}">
                     <deal id="logoutForm" method="POST" action="/logout">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </deal>
                     <div class="userName">
-                        <h4>Приветствуем вас,<br> ${pageContext.request.userPrincipal.name}
-                            <a href="<c:url value='/logout' />" class="btnR">Выйти из аккаунта</a><br>
+                        <h4><spring:message code="app.greeting"/>,<br> ${pageContext.request.userPrincipal.name}
+                            <a href="<c:url value='/logout' />" class="btnR"><spring:message code="app.logout"/></a><br>
                         </h4>
                     </div>
                 </c:if>
                 <sec:authorize access="!isAuthenticated()">
-                    <h4><a href="/login" class="btnR">Вход в аккаунт</a></h4>
+                    <h4><a href="/login" class="btnR"><spring:message code="app.login"/></a></h4>
                 </sec:authorize>
                 <div class="managerLink" id="managerLink">
                     <sec:authorize access="hasAuthority('MANAGER')">
-                        <a href="/manager/list"><h3>Сделки</h3></a>
+                        <a href="/manager/list"><h3><spring:message code="app.deals"/></h3></a>
                     </sec:authorize>
                 </div>
             </div>
@@ -45,39 +49,39 @@
 </header>
 <section class="cars" id="cars">
     <div class="container">
-        <a href="/cars" class="links"><h2>Автомобили</h2></a>
+        <a href="/cars" class="links"><h2><spring:message code="app.link.cars"/></h2></a>
         <p class="info">
-            Ознакомьтесь с нашим модельным рядом
+            <spring:message code="app.desc.link.cars"/>
         </p>
     </div>
 </section>
 <section class="aboutCompany" id="aboutCompany">
     <div class="container">
-        <a href="/about-company" class="links"><h2>О компании</h2></a>
+        <a href="/about-company" class="links"><h2><spring:message code="app.link.company"/></h2></a>
         <p class="info">
-            Узнайте больше о нашей компании
+            <spring:message code="app.desc.link.company"/>
         </p>
     </div>
 </section>
 <section class="news" id="news">
     <div class="container">
-        <a href="/news" class="links"><h2>Новости</h2></a>
+        <a href="/news" class="links"><h2><spring:message code="app.link.news"/></h2></a>
         <p class="info">
-            Будьте в курсе новостей
+            <spring:message code="app.desc.link.news"/>
         </p>
     </div>
 </section>
 <section class="contacts" id="contacts">
     <div class="container">
-        <a href="/contacts" class="links"><h2>Контактная информация</h2></a>
+        <a href="/contacts" class="links"><h2><spring:message code="app.link.media"/></h2></a>
         <p class="info" id="info">
-            Наши социальные сети
+            <spring:message code="app.desc.link.media"/>
         </p>
     </div>
 </section>
 <footer class="footer" id="footer">
     <div class="footerInfo">
-        <p>Информация взята из официальных источников</p>
+        <p><spring:message code="app.footer"/></p>
     </div>
 </footer>
 </body>

@@ -2,9 +2,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<spring:message code=""/>
 <html>
 <head>
-    <title>Title</title>
+    <spring:message code="app.manager.form.choose.active" var="active"/>
+    <spring:message code="app.manager.form.choose.completed" var="completed"/>
+    <spring:message code="app.manager.form.choose.failed" var="failed"/>
+    <title><spring:message code="app.manager.form.title"/></title>
     <link rel="stylesheet" href="/static/css/manager-form.css" type="text/css"/>
 </head>
 <body>
@@ -23,14 +28,19 @@
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </deal>
                     <div class="userName">
-                        <h4>Приветствуем вас,<br> ${pageContext.request.userPrincipal.name}
-                            <a href="<c:url value='/logout' />" class="btnR">Выйти из аккаунта</a><br>
+                        <h4><spring:message code="app.greeting"/>,<br> ${pageContext.request.userPrincipal.name}
+                            <a href="<c:url value='/logout' />" class="btnR"><spring:message code="app.logout"/></a><br>
                         </h4>
                     </div>
                 </c:if>
                 <sec:authorize access="!isAuthenticated()">
-                    <h4><a href="/login" class="btnR">Вход в аккаунт</a></h4>
+                    <h4><a href="/login" class="btnR"><spring:message code="app.login"/></a></h4>
                 </sec:authorize>
+                <div class="managerLink" id="managerLink">
+                    <sec:authorize access="hasAuthority('MANAGER')">
+                        <a href="/manager/list"><h3><spring:message code="app.deals"/></h3></a>
+                    </sec:authorize>
+                </div>
             </div>
         </div>
     </div>
@@ -41,58 +51,58 @@
             <input type="hidden" value="${deal.id}" name="dealId"/>
             <div class="information">
                 <div>
-                    <label class="label-info">Дата заявки</label>
+                    <label class="label-info"><spring:message code="app.manager.form.info.date"/></label>
                     <form:input readonly="true" path="creatingDate"/>
                 </div>
                 <div>
-                    <label class="label-info">Имя</label>
+                    <label class="label-info"><spring:message code="app.manager.form.info.name"/></label>
                     <form:input readonly="true" path="user.firstName"/>
                 </div>
                 <div>
-                    <label class="label-info">Фамилия</label>
+                    <label class="label-info"><spring:message code="app.manager.form.info.lastName"/></label>
                     <form:input readonly="true" path="user.lastName"/>
                 </div>
                 <div>
-                    <label class="label-info">Страна</label>
+                    <label class="label-info"><spring:message code="app.manager.form.info.country"/></label>
                     <form:input readonly="true" path="country"/>
                 </div>
                 <div>
-                    <label class="label-info">Город</label>
+                    <label class="label-info"><spring:message code="app.manager.form.info.city"/></label>
                     <form:input readonly="true" path="city"/>
                 </div>
                 <div>
-                    <label class="label-info">Номер телефона</label>
+                    <label class="label-info"><spring:message code="app.manager.form.info.phone"/></label>
                     <form:input readonly="true" path="phoneNumber"/>
                 </div>
                 <div>
-                    <label class="label-info">Модель</label>
+                    <label class="label-info"><spring:message code="app.manager.form.info.model"/></label>
                     <form:input readonly="true" path="car.model"/>
                 </div>
                 <div>
-                    <label class="label-info">Цена</label>
+                    <label class="label-info"><spring:message code="app.manager.form.info.price"/></label>
                     <form:input readonly="true" path="car.price"/>
                 </div>
             </div>
             <div>
-                <label class="label-info">Статус</label>
+                <label class="label-info"><spring:message code="app.manager.form.info.status"/></label>
                 <form:select path="status">
-                    <form:option value="Active"></form:option>
-                    <form:option value="Completed"></form:option>
-                    <form:option value="Failed"></form:option>
+                    <form:option value="${active}"></form:option>
+                    <form:option value="${completed}"></form:option>
+                    <form:option value="${failed}"></form:option>
                 </form:select>
             </div>
-            <form:button>Подтвердить</form:button>
+            <form:button><spring:message code="app.manager.form.info.submit"/></form:button>
         </form:form>
     </div>
 </section>
-<section class="link-sec">
+<section class="main-page">
     <div class="container">
-        <a href="/manager/list" class="manager-list-link">К таблице сделок</a>
+        <a href="/main" class="main-page-link"><spring:message code="app.link.main.page"/></a>
     </div>
 </section>
 <footer class="footer">
     <div class="footer-info">
-        <p>Информация взята из официальных источников</p>
+        <p><spring:message code="app.footer"/></p>
     </div>
 </footer>
 </body>
