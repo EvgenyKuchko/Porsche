@@ -16,7 +16,7 @@ public class Deal {
     private String phoneNumber;
     private String status;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date creatingDate;
+    private java.util.Date creatingDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)

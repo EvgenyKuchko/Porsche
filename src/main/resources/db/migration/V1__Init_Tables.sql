@@ -28,27 +28,34 @@ create table car
 );
 create table deal
 (
-    id           bigint not null auto_increment,
-    city         varchar(255),
-    country      varchar(255),
-    phone_number varchar(255),
-    creating_date datetime(6),
+    id            bigint  not null auto_increment,
+    city          varchar(255),
+    country       varchar(255),
+    creating_date timestamp,
+    phone_number  varchar(255),
     status        varchar(255),
-    car_id       bigint not null,
-    user_id      bigint not null,
+    car_id        bigint not null,
+    user_id       bigint not null,
+    primary key (id)
+);
+create table pictures
+(
+    id        bigint  not null auto_increment,
+    file_path varchar(255),
+    car_id    bigint not null,
     primary key (id)
 );
 create table role
 (
-    id   bigint not null auto_increment,
+    id   bigint  not null auto_increment,
     name varchar(255),
     primary key (id)
 );
 create table user
 (
-    id         bigint       not null auto_increment,
+    id         bigint  not null auto_increment,
     age        integer      not null,
-    first_name varchar(20)  not null,
+    first_name varchar(15)  not null,
     last_name  varchar(20)  not null,
     login      varchar(255) not null,
     password   varchar(255) not null,
@@ -57,13 +64,16 @@ create table user
 create table user_role
 (
     user_id bigint not null,
-    role_id bigint not null
+    role_id bigint not null,
+    primary key (user_id, role_id)
 );
 alter table deal
-    add constraint deal_car_fk foreign key (car_id) references car (id);
+    add constraint deal_car_fk foreign key (car_id) references car;
 alter table deal
-    add constraint deal_user_fk foreign key (user_id) references user (id);
+    add constraint deal_user_fk foreign key (user_id) references user;
+alter table pictures
+    add constraint pic_car_fk foreign key (car_id) references car;
 alter table user_role
-    add constraint user_role_role_fk foreign key (role_id) references role (id);
+    add constraint user_role_role_fk foreign key (role_id) references role;
 alter table user_role
-    add constraint user_role_user_fk foreign key (user_id) references user (id);
+    add constraint user_role_user_fk foreign key (user_id) references user;

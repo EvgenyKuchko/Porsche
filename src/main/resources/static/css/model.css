@@ -3,7 +3,8 @@ body {
     margin: 0;
     padding: 0;
     background: url("/static/img/model-bg.jpg");
-    background-size: 2500px;
+    background-size: 1700px;
+    background-attachment: fixed;
 }
 
 div, p, input, button, form, span, a, ul, li {
@@ -66,6 +67,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff;
     size: 300px;
     padding-left: 30px;
+    margin-top: 10px;
 }
 
 .title-info {
@@ -87,6 +89,30 @@ h1, h2, h3, h4, h5, h6 {
     size: 400px;
     font-size: 25px;
     padding-top: 20px;
+    padding-left: 200px;
+}
+
+hr {
+    color: black;
+    size: 3px;
+}
+
+/*.img {*/
+/*    transition:width 0.5s ease;*/
+/*}*/
+
+/*.pics-show:hover img{width:500px}*/
+
+.pics {
+    margin-left: 150px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.pictures {
+    text-align: center;
+    width: 400px;
+    height: 300px;
 }
 
 .desc-info {
