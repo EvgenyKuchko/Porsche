@@ -55,9 +55,6 @@
             <th><spring:message code="app.manager.form.info.status"/></th>
             <th><spring:message code="app.manager.form.info.actions"/></th>
             <c:forEach var="deal" items="${deals}">
-<%--                <c:url var="updateLink" value="/manager/updateForm/dealId">--%>
-<%--                    <c:param name="dealId" value="${deal.id}"/>--%>
-<%--                </c:url>--%>
                 <tr>
                     <td>${deal.creatingDate}</td>
                     <td>${deal.user.firstName}</td>

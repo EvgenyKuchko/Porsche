@@ -2,8 +2,8 @@ body {
     font-family: monospace;
     margin: 0;
     padding: 0;
-    background: url("/static/img/model-bg.jpg");
-    background-size: 1700px;
+    background: url("/static/img/model-bg.jpeg");
+    background-size: 1500px;
     background-attachment: fixed;
 }
 
@@ -77,7 +77,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .model-name {
-    color: darkorange;
+    color: #fff;
     font-size: 60px;
 }
 
@@ -85,7 +85,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 1200px;
     margin: 0 auto;
     text-align: center;
-    color: black;
+    color: #fff;
     size: 400px;
     font-size: 25px;
     padding-top: 20px;
@@ -96,12 +96,6 @@ hr {
     color: black;
     size: 3px;
 }
-
-/*.img {*/
-/*    transition:width 0.5s ease;*/
-/*}*/
-
-/*.pics-show:hover img{width:500px}*/
 
 .pics {
     margin-left: 150px;
@@ -132,7 +126,7 @@ hr {
 }
 
 .char {
-    color: black;
+    color: #fff;
     font-size: 20px;
 }
 
