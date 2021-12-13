@@ -11,8 +11,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Controller
@@ -33,7 +36,7 @@ public class DealController {
         Car car = carService.getCarByModel(model);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User user = userService.getUserByLogin(userDetails.getUsername());
-        LocalDateTime date = LocalDateTime.now();
+        Timestamp date = new Timestamp(System.currentTimeMillis());
         mod.addAttribute("date", date);
         mod.addAttribute("car", car);
         mod.addAttribute("user", user);
@@ -42,7 +45,10 @@ public class DealController {
     }
 
     @PostMapping("/form/{model}")
-    public String saveNewDeal(Deal deal) {
+    public String saveNewDeal(@Valid Deal deal, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "form";
+        }
         dealService.saveDeal(deal);
         return "redirect:/deal";
     }

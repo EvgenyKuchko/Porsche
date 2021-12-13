@@ -2,9 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <spring:message code=""/>
 <html>
 <head>
+    <spring:message code="app.form.city" var="city"/>
+    <spring:message code="app.form.country" var="country"/>
+    <spring:message code="app.form.phone" var="phone"/>
     <title><spring:message code="app.form.title"/></title>
     <link rel="stylesheet" href="/static/css/form.css" type="text/css"/>
 </head>
@@ -53,22 +57,23 @@
         <div class="info">
             <p><spring:message code="app.form.info"/></p>
         </div>
-        <form method="POST" action="/form/{model}" class="form-signin">
+        <form:form action="/form/{model}" method="post" modelAttribute="deal" class="form-signin">
             <div class="form-group ">
-                <input name="city" type="text" class="form-control" placeholder="<spring:message code="app.form.city"/>"
-                       autofocus="true"/> <br>
-                <input name="country" type="text" class="form-control"
-                       placeholder="<spring:message code="app.form.country"/>"/> <br>
-                <input name="phoneNumber" type="text" class="form-control"
-                       placeholder="<spring:message code="app.form.phone"/>"/>
-                <input type="hidden" name="creatingDate" value="${date}">
-                <input type="hidden" name="status" value="Active">
-                <input type="hidden" name="car" value="${car.id}">
-                <input type="hidden" name="user" value="${user.id}">
+                <form:input path="city" type="text" autofocus="true" class="form-control"
+                            placeholder="${city}"></form:input>
+                <form:errors path="city" class="err"/> <br>
+                <form:input path="country" type="text" class="form-control" placeholder="${country}"></form:input>
+                <form:errors path="country" class="err"/> <br>
+                <form:input path="phoneNumber" type="text" class="form-control" placeholder="${phone}"></form:input>
+                <form:errors path="phoneNumber" class="err"/>
+                <form:input path="creatingDate" type="hidden" value="${date}"/>
+                <form:input path="status" type="hidden" value="Active"/>
+                <form:input path="car" type="hidden" value="${car.id}"/>
+                <form:input path="user" type="hidden" value="${user.id}"/>
                 <br>
                 <button class="btn-submit" type="submit"><spring:message code="app.form.submit"/></button>
             </div>
-        </form>
+        </form:form>
     </div>
 </section>
 <br>

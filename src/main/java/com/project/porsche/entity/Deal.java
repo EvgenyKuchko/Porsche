@@ -3,6 +3,9 @@ package com.project.porsche.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -11,12 +14,14 @@ public class Deal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank(message = "Country must be specified")
     private String country;
+    @NotBlank(message = "City must be specified")
     private String city;
+    @Pattern(regexp = "\\+[0-9]{12}", message = "Phone number must start with +, then - 12 numbers")
     private String phoneNumber;
     private String status;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date creatingDate;
+    private Timestamp creatingDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
@@ -68,11 +73,11 @@ public class Deal {
         this.status = status;
     }
 
-    public Date getCreatingDate() {
+    public Timestamp getCreatingDate() {
         return creatingDate;
     }
 
-    public void setCreatingDate(Date creatingDate) {
+    public void setCreatingDate(Timestamp creatingDate) {
         this.creatingDate = creatingDate;
     }
 
@@ -94,7 +99,7 @@ public class Deal {
 
     @Override
     public String toString() {
-        return "Form{" +
+        return "Deal{" +
                 "id=" + id +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +

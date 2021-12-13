@@ -12,7 +12,12 @@
 <div class="container">
     <form method="POST" action="/login" class="form-signin">
         <h1 class="form-heading"><spring:message code="app.login.title"/></h1>
-        <div class="form-group ">
+        <div class="err">
+            <c:if test="${not empty error}">
+                <div class="error">${error}</div>
+            </c:if>
+        </div>
+        <div class="form-group">
             <input name="username" type="text" class="form-control"
                    placeholder="<spring:message code="app.login.login"/>"
                    autofocus="true"/> <br>

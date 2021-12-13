@@ -26,7 +26,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder(8);
     }
 
-    // доделать
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -39,7 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()  //а для всех остальных запросов мы требуем авторизацию
                 .and()
                 .formLogin()  // включаем форму Login (из нашего шаблона MvcConfig
-                .loginPage("/login")  // указываем, что форма Login находится по данному мепингу
+                .loginPage("/login")  // указываем, что форма Login находится по данному мапингу
+                .failureUrl("/login?error=true")
                 .defaultSuccessUrl("/main")  // перенаправление на главную страницу после успешного входа
                 .permitAll()  // указываем, что формой логина могут пользоваться все
                 .and()

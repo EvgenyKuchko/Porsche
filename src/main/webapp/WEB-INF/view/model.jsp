@@ -67,6 +67,16 @@
         </div>
     </div>
 </section>
+<section class="pics">
+    <div class="wrapper">
+        <div class="pics-show">
+            <c:forEach var="pic" items="${car.pics}">
+                <img src="${pic.filePath}" class="pictures"/>
+            </c:forEach>
+        </div>
+    </div>
+</section>
+<hr>
 <section class="engine-sec">
     <div class="container">
         <h2 class="title"><spring:message code="app.model.engine"/></h2>
@@ -76,6 +86,7 @@
         </div>
     </div>
 </section>
+<hr>
 <section class="body-sec">
     <div class="container">
         <h2 class="title"><spring:message code="app.model.body"/></h2>
@@ -91,6 +102,7 @@
         </div>
     </div>
 </section>
+<hr>
 <section class="expl-sec">
     <div class="container">
         <h2 class="title"><spring:message code="app.model.perf"/></h2>
@@ -103,6 +115,7 @@
         </div>
     </div>
 </section>
+<hr>
 <section class="transmission-sec">
     <div class="container">
         <h2 class="title"><spring:message code="app.model.transmission"/></h2>
@@ -113,6 +126,7 @@
         </div>
     </div>
 </section>
+<hr>
 <section class="manuf-sec">
     <div class="container">
         <h2 class="title"><spring:message code="app.model.manufacture"/></h2>
@@ -121,6 +135,7 @@
         </div>
     </div>
 </section>
+<hr>
 <section class="order-sec">
     <div class="container-links">
         <a href="/form/<c:out value="${car.model}"/>" class="order-btn"><spring:message code="app.model.order"/></a>

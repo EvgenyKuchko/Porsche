@@ -32,6 +32,8 @@ public class Car {
     private int engineDisplacement;
     private String typeOfTransmission;
     private String driveType;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "car")
+    private Set<Picture> pics;
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.REFRESH)
     private Set<Deal> deals;
@@ -235,6 +237,22 @@ public class Car {
     }
 
     public void setForms(Set<Deal> deals) {
+        this.deals = deals;
+    }
+
+    public Set<Picture> getPics() {
+        return pics;
+    }
+
+    public void setPics(Set<Picture> pics) {
+        this.pics = pics;
+    }
+
+    public Set<Deal> getDeals() {
+        return deals;
+    }
+
+    public void setDeals(Set<Deal> deals) {
         this.deals = deals;
     }
 
