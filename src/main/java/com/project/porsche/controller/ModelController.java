@@ -16,7 +16,6 @@ public class ModelController {
     @Autowired
     private CarService carService;
 
-    // сделать поиск полность по модели (911 Turbo)
     @GetMapping("/{model}")
     public String showModelInfo(@PathVariable String model, Model mod){
         Car car = carService.getCarByModel(model);
