@@ -8,6 +8,7 @@
     <title><c:out value="${car.model}"/></title>
     <%@ page isELIgnored="false" %>
     <link rel="stylesheet" href="/static/css/model.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 </head>
 <body>
 <header class="header" id="header">
@@ -71,7 +72,9 @@
     <div class="wrapper">
         <div class="pics-show">
             <c:forEach var="pic" items="${car.pics}">
+                <a data-fancybox="images" data-caption="My caption" href="${pic.filePath}">
                 <img src="${pic.filePath}" class="pictures"/>
+                </a>
             </c:forEach>
         </div>
     </div>
@@ -153,5 +156,7 @@
         <p><spring:message code="app.footer"/></p>
     </div>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 </body>
 </html>
