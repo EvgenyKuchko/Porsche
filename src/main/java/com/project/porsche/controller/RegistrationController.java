@@ -8,22 +8,24 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
 @Controller
+@RequestMapping("/registration")
 public class RegistrationController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/registration")
+    @GetMapping()
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
         return "registration";
     }
 
-    @PostMapping("/registration")
+    @PostMapping()
     public String registrationUser(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "registration";

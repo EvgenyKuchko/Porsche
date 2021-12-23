@@ -42,7 +42,7 @@
                 </sec:authorize>
                 <div class="manager">
                     <sec:authorize access="hasAuthority('MANAGER')">
-                        <a href="/manager/list" class="managerLink"><h3><spring:message code="app.deals"/></h3></a>
+                        <a href="/deals" class="managerLink"><h3><spring:message code="app.deals"/></h3></a>
                     </sec:authorize>
                 </div>
             </div>
@@ -57,7 +57,7 @@
         <div class="info">
             <p><spring:message code="app.form.info"/></p>
         </div>
-        <form:form action="/form/{model}" method="post" modelAttribute="deal" class="form-signin">
+        <form:form action="saveNewDeal" method="post" modelAttribute="deal" class="form-signin">
             <div class="form-group ">
                 <br><form:errors path="city" class="err"/> <br>
                 <form:input path="city" type="text" autofocus="true" class="form-control"

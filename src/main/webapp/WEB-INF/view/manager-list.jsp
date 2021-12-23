@@ -65,7 +65,7 @@
                     <td>${deal.car.model}</td>
                     <td>${deal.car.price}</td>
                     <td>${deal.status}</td>
-                    <td><a href="updateForm/${deal.id}" class="changeStatus"><spring:message code="app.manager.list.change"/></a></td>
+                    <td><a href="deals/${deal.id}" class="changeStatus"><spring:message code="app.manager.list.change"/></a></td>
                 </tr>
             </c:forEach>
         </table>
