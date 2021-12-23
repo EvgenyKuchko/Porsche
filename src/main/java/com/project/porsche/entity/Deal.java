@@ -31,7 +31,8 @@ public class Deal {
     @JoinColumn(name = "car_id", nullable = false)
     private Car car;
 
-    public Deal() {}
+    public Deal() {
+    }
 
     public long getId() {
         return id;

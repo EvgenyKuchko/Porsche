@@ -18,14 +18,14 @@ public class RegistrationController {
     private UserService userService;
 
     @GetMapping("/registration")
-    public String showRegistrationForm(Model model){
+    public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String registrationUser(@Valid User user, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public String registrationUser(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "registration";
         }
         userService.saveNewUser(user);

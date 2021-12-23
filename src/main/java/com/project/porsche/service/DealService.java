@@ -15,13 +15,13 @@ public class DealService {
     private DealRepository dealRepository;
 
     @Transactional
-    public boolean saveDeal(Deal deal){
+    public boolean saveDeal(Deal deal) {
         dealRepository.save(deal);
         return true;
     }
 
     @Transactional
-    public List<Deal> getDeals(){
+    public List<Deal> getDeals() {
         return dealRepository.findAll();
     }
 

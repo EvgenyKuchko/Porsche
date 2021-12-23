@@ -19,9 +19,9 @@
                 <h1 class="logoText">Porsche</h1>
             </div>
             <div class="security" id="security">
-                <div class="l10n" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="?lang=en"><spring:message code="app.lang.english"/></a>
-                    <a class="dropdown-item" href="?lang=ru"><spring:message code="app.lang.russian"/></a>
+                <div class="locale" aria-labelledby="dropdownMenuButton">
+                    <a class="l10n" href="?lang=en"><spring:message code="app.lang.english"/></a>
+                    <a class="l10n" href="?lang=ru"><spring:message code="app.lang.russian"/></a>
                 </div>
                 <c:if test="${pageContext.request.userPrincipal.name != null}">
                     <deal id="logoutForm" method="POST" action="/logout">
@@ -65,7 +65,7 @@
                     <td>${deal.car.model}</td>
                     <td>${deal.car.price}</td>
                     <td>${deal.status}</td>
-                    <td><a href="updateForm/${deal.id}"><spring:message code="app.manager.list.change"/></a></td>
+                    <td><a href="updateForm/${deal.id}" class="changeStatus"><spring:message code="app.manager.list.change"/></a></td>
                 </tr>
             </c:forEach>
         </table>

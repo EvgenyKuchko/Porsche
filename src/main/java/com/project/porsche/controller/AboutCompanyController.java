@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AboutCompanyController {
 
     @GetMapping("/about-company")
-    public String showAbutCompanyPgae(){
+    public String showAbutCompanyPage() {
         return "about-company";
     }
 }

@@ -17,21 +17,21 @@ public class ManagerController {
     private DealService dealService;
 
     @GetMapping("/list")
-    public String listDeals(Model model){
+    public String listDeals(Model model) {
         List<Deal> deals = dealService.getDeals();
         model.addAttribute("deals", deals);
         return "manager-list";
     }
 
-    @GetMapping ("/updateForm/{dealId}")
-    public String updateCourse(@PathVariable Long dealId, Model model){
+    @GetMapping("/updateForm/{dealId}")
+    public String updateCourse(@PathVariable Long dealId, Model model) {
         Deal deal = dealService.getDeal(dealId);
         model.addAttribute(deal);
         return "manager-form";
     }
 
     @PostMapping("/updateForm/saveDeal")
-    public String saveDeal(@ModelAttribute("deal") Deal deal, @RequestParam("dealId") Long dealId){
+    public String saveDeal(@ModelAttribute("deal") Deal deal, @RequestParam("dealId") Long dealId) {
         Deal dealChanged = dealService.getDeal(dealId);
         dealChanged.setStatus(deal.getStatus());
         dealService.saveDeal(dealChanged);

@@ -23,9 +23,9 @@
                 <h1 class="logoText">Porsche</h1>
             </div>
             <div class="security" id="security">
-                <div class="l10n" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="?lang=en"><spring:message code="app.lang.english"/></a>
-                    <a class="dropdown-item" href="?lang=ru"><spring:message code="app.lang.russian"/></a>
+                <div class="locale" aria-labelledby="dropdownMenuButton">
+                    <a class="l10n" href="?lang=en"><spring:message code="app.lang.english"/></a>
+                    <a class="l10n" href="?lang=ru"><spring:message code="app.lang.russian"/></a>
                 </div>
                 <c:if test="${pageContext.request.userPrincipal.name != null}">
                     <deal id="logoutForm" method="POST" action="/logout">
@@ -40,9 +40,9 @@
                 <sec:authorize access="!isAuthenticated()">
                     <h4><a href="/login" class="btnR"><spring:message code="app.login"/></a></h4>
                 </sec:authorize>
-                <div class="managerLink" id="managerLink">
+                <div class="manager">
                     <sec:authorize access="hasAuthority('MANAGER')">
-                        <a href="/manager/list"><h3><spring:message code="app.deals"/></h3></a>
+                        <a href="/manager/list" class="managerLink"><h3><spring:message code="app.deals"/></h3></a>
                     </sec:authorize>
                 </div>
             </div>

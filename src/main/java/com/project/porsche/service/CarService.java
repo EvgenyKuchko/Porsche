@@ -14,7 +14,7 @@ public class CarService {
     private CarRepository carRepository;
 
     @Transactional
-    public Car getCarByModel(String model){
+    public Car getCarByModel(String model) {
         return carRepository.findByModel(model);
     }
 }

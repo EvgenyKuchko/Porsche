@@ -22,16 +22,17 @@
         <p><spring:message code="app.reg.info"/></p>
     </div>
     <form:form action="/registration" method="post" modelAttribute="user">
+        <form:errors path="firstName" class="err"/><br>
         <form:input path="firstName" type="text" placeholder="${firstName}" class="form-control"></form:input>
-        <form:errors path="firstName" class="err"/> <br>
+        <br><form:errors path="lastName" class="err"/><br>
         <form:input path="lastName" type="text" placeholder="${lastName}" class="form-control"></form:input>
-        <form:errors path="lastName" class="err"/> <br>
+        <br><form:errors path="age" class="err"/><br>
         <form:input path="age" type="number" placeholder="${age}" class="form-control"></form:input>
-        <form:errors path="age" class="err"/> <br>
+        <br><form:errors path="login" class="err"/><br>
         <form:input path="login" type="text" placeholder="${login}" class="form-control"></form:input>
-        <form:errors path="login" class="err"/> <br>
-        <form:input path="password" type="password" placeholder="${password}" class="form-control"></form:input>
-        <form:errors path="password" class="err"/> <br>
+        <br><form:errors path="password" class="err"/><br>
+        <form:input path="password" type="password" placeholder="${password}" class="form-control"></form:input><br>
+        <br>
         <button class="btn-submit" type="submit"><spring:message code="app.reg.submit"/></button>
     </form:form>
     <a href="/main" class="main-page-link"><h2><spring:message code="app.link.main.page"/></h2></a>

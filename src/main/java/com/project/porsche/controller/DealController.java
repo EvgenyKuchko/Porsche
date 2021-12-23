@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @Controller
 public class DealController {
@@ -32,7 +31,7 @@ public class DealController {
 
     @GetMapping("/form/{model}")
     public String showForm(@PathVariable String model, Model mod,
-                           Authentication authentication){
+                           Authentication authentication) {
         Car car = carService.getCarByModel(model);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User user = userService.getUserByLogin(userDetails.getUsername());
@@ -46,7 +45,7 @@ public class DealController {
 
     @PostMapping("/form/{model}")
     public String saveNewDeal(@Valid Deal deal, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "form";
         }
         dealService.saveDeal(deal);
@@ -54,7 +53,7 @@ public class DealController {
     }
 
     @GetMapping("/deal")
-    public String showDealPage(){
+    public String showDealPage() {
         return "deal";
     }
 }
