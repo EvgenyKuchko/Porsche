@@ -3,14 +3,14 @@ package com.project.porsche.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name="pictures")
+@Table(name = "pictures")
 public class Picture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String filePath;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="car_id", nullable = false)
+    @JoinColumn(name = "car_id", nullable = false)
     private Car car;
 
     public Picture() {

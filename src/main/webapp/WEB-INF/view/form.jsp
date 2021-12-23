@@ -23,9 +23,9 @@
                 <h1 class="logoText">Porsche</h1>
             </div>
             <div class="security" id="security">
-                <div class="l10n" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="?lang=en"><spring:message code="app.lang.english"/></a>
-                    <a class="dropdown-item" href="?lang=ru"><spring:message code="app.lang.russian"/></a>
+                <div class="locale" aria-labelledby="dropdownMenuButton">
+                    <a class="l10n" href="?lang=en"><spring:message code="app.lang.english"/></a>
+                    <a class="l10n" href="?lang=ru"><spring:message code="app.lang.russian"/></a>
                 </div>
                 <c:if test="${pageContext.request.userPrincipal.name != null}">
                     <deal id="logoutForm" method="POST" action="/logout">
@@ -40,9 +40,9 @@
                 <sec:authorize access="!isAuthenticated()">
                     <h4><a href="/login" class="btnR"><spring:message code="app.login"/></a></h4>
                 </sec:authorize>
-                <div class="managerLink" id="managerLink">
+                <div class="manager">
                     <sec:authorize access="hasAuthority('MANAGER')">
-                        <a href="/manager/list"><h3><spring:message code="app.deals"/></h3></a>
+                        <a href="/manager/list" class="managerLink"><h3><spring:message code="app.deals"/></h3></a>
                     </sec:authorize>
                 </div>
             </div>
@@ -59,13 +59,13 @@
         </div>
         <form:form action="/form/{model}" method="post" modelAttribute="deal" class="form-signin">
             <div class="form-group ">
+                <br><form:errors path="city" class="err"/> <br>
                 <form:input path="city" type="text" autofocus="true" class="form-control"
-                            placeholder="${city}"></form:input>
-                <form:errors path="city" class="err"/> <br>
-                <form:input path="country" type="text" class="form-control" placeholder="${country}"></form:input>
-                <form:errors path="country" class="err"/> <br>
-                <form:input path="phoneNumber" type="text" class="form-control" placeholder="${phone}"></form:input>
-                <form:errors path="phoneNumber" class="err"/>
+                            placeholder="${city}"></form:input><br>
+                <br><form:errors path="country" class="err"/> <br>
+                <form:input path="country" type="text" class="form-control" placeholder="${country}"></form:input><br>
+                <br><form:errors path="phoneNumber" class="err"/><br>
+                <form:input path="phoneNumber" type="text" class="form-control" placeholder="${phone}"></form:input><br>
                 <form:input path="creatingDate" type="hidden" value="${date}"/>
                 <form:input path="status" type="hidden" value="Active"/>
                 <form:input path="car" type="hidden" value="${car.id}"/>

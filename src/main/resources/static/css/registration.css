@@ -2,8 +2,7 @@ body {
     font-family: monospace;
     margin: 0;
     padding: 0;
-    background: url("/static/img/log.jpg");
-    background-size: 1550px;
+    background-image: linear-gradient(to right bottom, #52565d, #485054, #424a4a, #3e4340, #3b3c38);
 }
 
 div, p, input, button, form, span, a, ul, li {
@@ -15,21 +14,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-    padding-top: 200px;
-    padding-left: 100px;
+    padding-top: 120px;
+    text-align: center;
 }
 
 .title {
-    font-size: 20px;
+    font-size: 25px;
     padding-bottom: 30px;
     color: white;
 }
 
 .info {
     color: #fff;
-    display: block;
-    font-size: 15px;
-    width: 300px;
+    font-size: 20px;
 }
 
 .form-registration {
@@ -39,16 +36,16 @@ h1, h2, h3, h4, h5, h6 {
 .form-control {
     text-align: center;
     text-decoration: none;
-    border-radius: 1000px;
-    width: 200px;
-    height: 30px;
+    border-radius: 2000px;
+    width: 400px;
+    height: 50px;
 }
 
 .btn-submit {
     text-align: center;
     text-decoration: none;
     border-radius: 200px;
-    width: 100px;
+    width: 150px;
 }
 
 .main-page-link {
@@ -58,6 +55,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .err {
     color: red;
+    font-size: 20px;
 }
 
 .footer {

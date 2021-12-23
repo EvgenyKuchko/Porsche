@@ -20,6 +20,7 @@ import java.util.Set;
 
 @Service
 public class UserService implements UserDetailsService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -30,13 +31,11 @@ public class UserService implements UserDetailsService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
-    public boolean saveNewUser(User user){
+    public boolean saveNewUser(User user) {
         User userFromDB = userRepository.findByLogin(user.getLogin());
-
-        if(userFromDB != null){
+        if (userFromDB != null) {
             return false;
         }
-
         user.setRoles(Collections.singleton(roleRepository.findRoleByName("USER")));
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
@@ -47,21 +46,18 @@ public class UserService implements UserDetailsService {
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         User user = userRepository.findByLogin(login);
-
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (Role role : user.getRoles()){
+        for (Role role : user.getRoles()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
-
         return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), grantedAuthorities);
     }
 
     @Transactional
-    public User getUserByLogin(String login){
+    public User getUserByLogin(String login) {
         return userRepository.findByLogin(login);
     }
 }

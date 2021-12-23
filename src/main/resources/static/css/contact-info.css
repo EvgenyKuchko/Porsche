@@ -2,8 +2,7 @@ body {
     font-family: monospace;
     margin: 0;
     padding: 0;
-    background: url("/static/img/contacts-bg.jpg");
-    background-size: 1700px;
+    background-image: linear-gradient(to right bottom, #52565d, #485054, #424a4a, #3e4340, #3b3c38);
 }
 
 div, p, input, button, form, span, a, ul, li {
@@ -61,14 +60,17 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 10px;
 }
 
-.l10n {
-    color: red;
-    text-align: center;
-}
-
 .managerLink {
+    color: darkorange;
+    display: block;
     text-align: center;
     padding-top: 5px;
+}
+
+.l10n {
+    color: darkorange;
+    display: block;
+    text-align: center;
 }
 
 .social-media-title {

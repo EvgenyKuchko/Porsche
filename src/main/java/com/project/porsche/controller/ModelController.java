@@ -17,7 +17,7 @@ public class ModelController {
     private CarService carService;
 
     @GetMapping("/{model}")
-    public String showModelInfo(@PathVariable String model, Model mod){
+    public String showModelInfo(@PathVariable String model, Model mod) {
         Car car = carService.getCarByModel(model);
         mod.addAttribute("car", car);
         return "model";

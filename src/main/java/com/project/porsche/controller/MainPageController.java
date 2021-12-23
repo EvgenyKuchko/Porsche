@@ -16,7 +16,7 @@ public class MainPageController {
     private SecurityService securityService;
 
     @GetMapping("/main")
-    public String showMainPage(){
+    public String showMainPage() {
         return "main";
     }
 }

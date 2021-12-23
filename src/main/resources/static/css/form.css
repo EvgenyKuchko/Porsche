@@ -2,8 +2,7 @@ body {
     font-family: monospace;
     margin: 0;
     padding: 0;
-    background: url("/static/img/form-bg.jpg");
-    background-size: 1600px;
+    background-image: linear-gradient(to right bottom, #52565d, #485054, #424a4a, #3e4340, #3b3c38);
 }
 
 div, p, input, button, form, span, a, ul, li {
@@ -15,8 +14,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-    padding-top: 100px;
-    padding-left: 100px;
+    padding-top: 20px;
+    text-align: center;
 }
 
 .header {
@@ -57,9 +56,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .managerLink {
-    color: red;
+    color: darkorange;
+    display: block;
     text-align: center;
     padding-top: 5px;
+}
+
+.l10n {
+    color: darkorange;
+    display: block;
+    text-align: center;
 }
 
 .form-heading {
@@ -70,8 +76,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .info {
     color: #fff;
-    display: block;
-    width: 300px;
     font-size: 17px;
 }
 
@@ -82,26 +86,26 @@ h1, h2, h3, h4, h5, h6 {
 .form-control {
     text-align: center;
     text-decoration: none;
-    border-radius: 1000px;
-    width: 200px;
-    height: 30px;
+    border-radius: 2000px;
+    width: 400px;
+    height: 50px;
 }
 
 .btn-submit {
     text-align: center;
     text-decoration: none;
     border-radius: 200px;
-    width: 80px;
+    width: 150px;
 }
 
 .main-page-link {
     color: #ffffff;
-    display: block;
     font-size: 17px;
 }
 
 .err {
     color: red;
+    font-size: 20px;
 }
 
 .footer {

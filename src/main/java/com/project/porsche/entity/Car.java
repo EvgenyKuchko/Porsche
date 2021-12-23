@@ -38,7 +38,8 @@ public class Car {
     @OneToMany(mappedBy = "car", cascade = CascadeType.REFRESH)
     private Set<Deal> deals;
 
-    public Car() {}
+    public Car() {
+    }
 
     public long getId() {
         return id;
