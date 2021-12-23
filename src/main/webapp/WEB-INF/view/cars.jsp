@@ -38,7 +38,7 @@
                 </sec:authorize>
                 <div class="manager">
                     <sec:authorize access="hasAuthority('MANAGER')">
-                        <a href="/manager/list" class="managerLink"><h3><spring:message code="app.deals"/></h3></a>
+                        <a href="/deals" class="managerLink"><h3><spring:message code="app.deals"/></h3></a>
                     </sec:authorize>
                 </div>
             </div>

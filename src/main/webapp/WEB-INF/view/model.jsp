@@ -40,7 +40,7 @@
                 </sec:authorize>
                 <div class="manager">
                     <sec:authorize access="hasAuthority('MANAGER')">
-                        <a href="/manager/list" class="managerLink"><h3><spring:message code="app.deals"/></h3></a>
+                        <a href="/deals" class="managerLink"><h3><spring:message code="app.deals"/></h3></a>
                     </sec:authorize>
                 </div>
             </div>
@@ -72,7 +72,7 @@
     <div class="wrapper">
         <div class="pics-show">
             <c:forEach var="pic" items="${car.pics}">
-                <a data-fancybox="images" data-caption="My caption" href="${pic.filePath}">
+                <a data-fancybox="images" data-caption="Car pic" href="${pic.filePath}">
                 <img src="${pic.filePath}" class="pictures"/>
                 </a>
             </c:forEach>
@@ -141,7 +141,7 @@
 <hr>
 <section class="order-sec">
     <div class="container-links">
-        <a href="/form/<c:out value="${car.model}"/>" class="order-btn"><spring:message code="app.model.order"/></a>
+        <a href="/deal/<c:out value="${car.model}"/>" class="order-btn"><spring:message code="app.model.order"/></a>
     </div>
 </section>
 <section class="links-sec">

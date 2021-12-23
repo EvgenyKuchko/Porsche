@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.sql.Timestamp;
 
 @Controller
+@RequestMapping("/deal")
 public class DealController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class DealController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/form/{model}")
+    @GetMapping("/{model}")
     public String showForm(@PathVariable String model, Model mod,
                            Authentication authentication) {
         Car car = carService.getCarByModel(model);
@@ -43,16 +44,16 @@ public class DealController {
         return "form";
     }
 
-    @PostMapping("/form/{model}")
+    @PostMapping("/{model}")
     public String saveNewDeal(@Valid Deal deal, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "form";
         }
         dealService.saveDeal(deal);
-        return "redirect:/deal";
+        return "redirect:/deal/success";
     }
 
-    @GetMapping("/deal")
+    @GetMapping("/success")
     public String showDealPage() {
         return "deal";
     }
