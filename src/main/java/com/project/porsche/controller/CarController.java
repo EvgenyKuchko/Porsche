@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CarController {
 
     @GetMapping()
-    public String showCarPage(){
+    public String showCarPage() {
         return "cars";
     }
 }

@@ -1,12 +1,9 @@
 package com.project.porsche.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Entity
 @Table(name = "deal")

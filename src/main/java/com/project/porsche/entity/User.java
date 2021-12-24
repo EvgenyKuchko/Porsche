@@ -87,10 +87,6 @@ public class User implements UserDetails {
         this.login = login;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Set<Deal> getDeals() {
         return deals;
     }
@@ -109,6 +105,10 @@ public class User implements UserDetails {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

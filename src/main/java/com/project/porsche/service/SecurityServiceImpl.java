@@ -14,7 +14,6 @@ public class SecurityServiceImpl implements SecurityService {
         if (userDetails instanceof UserDetails) {
             return ((UserDetails) userDetails).getUsername();
         }
-
         return null;
     }
 }
