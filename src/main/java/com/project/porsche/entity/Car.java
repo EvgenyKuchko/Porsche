@@ -1,7 +1,6 @@
 package com.project.porsche.entity;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,7 +10,6 @@ import java.util.Set;
 @Table(name = "car")
 @Getter
 @Setter
-@NoArgsConstructor
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +39,6 @@ public class Car {
     private String driveType;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "car")
     private Set<Picture> pics;
-
     @OneToMany(mappedBy = "car", cascade = CascadeType.REFRESH)
     private Set<Deal> deals;
 }
