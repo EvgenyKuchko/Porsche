@@ -37,8 +37,10 @@ public class Car {
     private int engineDisplacement;
     private String typeOfTransmission;
     private String driveType;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "car")
     private Set<Picture> pics;
+
     @OneToMany(mappedBy = "car", cascade = CascadeType.REFRESH)
     private Set<Deal> deals;
 }
