@@ -79,8 +79,12 @@
             <artifactId>fancyapps__fancybox</artifactId>
             <version>3.5.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -89,5 +93,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
