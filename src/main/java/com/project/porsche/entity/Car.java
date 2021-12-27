@@ -44,35 +44,4 @@ public class Car {
 
     @OneToMany(mappedBy = "car", cascade = CascadeType.REFRESH)
     private Set<Deal> deals;
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", model='" + model + '\'' +
-                ", price='" + price + '\'' +
-                ", interior='" + interior + '\'' +
-                ", transmission=" + transmission +
-                ", fuelType='" + fuelType + '\'' +
-                ", power=" + power +
-                ", acceleration=" + acceleration +
-                ", maxSpeed=" + maxSpeed +
-                ", weight=" + weight +
-                ", height=" + height +
-                ", length=" + length +
-                ", payload=" + payload +
-                ", places=" + places +
-                ", fuelTankVolume=" + fuelTankVolume +
-                ", fuelConsInTheCity=" + fuelConsInTheCity +
-                ", fuelConsOutsideTheCity=" + fuelConsOutsideTheCity +
-                ", combinedFuelCons=" + combinedFuelCons +
-                ", bodyType='" + bodyType + '\'' +
-                ", numberOfDoors=" + numberOfDoors +
-                ", yearOfManufacture=" + yearOfManufacture +
-                ", engineDisplacement=" + engineDisplacement +
-                ", typeOfTransmission='" + typeOfTransmission + '\'' +
-                ", driveType='" + driveType + '\'' +
-                ", forms=" + deals +
-                '}';
-    }
 }
