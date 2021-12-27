@@ -1,5 +1,9 @@
 package com.project.porsche.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -7,6 +11,9 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "deal")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Deal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,73 +34,6 @@ public class Deal {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id", nullable = false)
     private Car car;
-
-    public Deal() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Timestamp getCreatingDate() {
-        return creatingDate;
-    }
-
-    public void setCreatingDate(Timestamp creatingDate) {
-        this.creatingDate = creatingDate;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
 
     @Override
     public String toString() {
