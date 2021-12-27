@@ -13,7 +13,6 @@ import java.sql.Timestamp;
 @Table(name = "deal")
 @Getter
 @Setter
-@NoArgsConstructor
 public class Deal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,18 +33,4 @@ public class Deal {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "car_id", nullable = false)
     private Car car;
-
-    @Override
-    public String toString() {
-        return "Deal{" +
-                "id=" + id +
-                ", country='" + country + '\'' +
-                ", city='" + city + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", status='" + status + '\'' +
-                ", creatingDate=" + creatingDate +
-                ", user=" + user +
-                ", car=" + car +
-                '}';
-    }
 }
