@@ -1,6 +1,6 @@
 package com.project.porsche.controller;
 
-import com.project.porsche.entity.User;
+import com.project.porsche.dto.UserDto;
 import com.project.porsche.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,12 +21,12 @@ public class RegistrationController {
 
     @GetMapping()
     public String showRegistrationForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDto());
         return "registration";
     }
 
     @PostMapping()
-    public String registrationUser(@Valid User user, BindingResult bindingResult) {
+    public String registrationUser(@Valid UserDto user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "registration";
         }

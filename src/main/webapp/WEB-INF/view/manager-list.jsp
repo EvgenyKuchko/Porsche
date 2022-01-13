@@ -57,13 +57,13 @@
             <c:forEach var="deal" items="${deals}">
                 <tr>
                     <td>${deal.creatingDate}</td>
-                    <td>${deal.user.firstName}</td>
-                    <td>${deal.user.lastName}</td>
+                    <td>${deal.firstName}</td>
+                    <td>${deal.lastName}</td>
                     <td>${deal.country}</td>
                     <td>${deal.city}</td>
                     <td>${deal.phoneNumber}</td>
-                    <td>${deal.car.model}</td>
-                    <td>${deal.car.price}</td>
+                    <td>${deal.model}</td>
+                    <td>${deal.price}</td>
                     <td>${deal.status}</td>
                     <td><a href="deals/${deal.id}" class="changeStatus"><spring:message code="app.manager.list.change"/></a></td>
                 </tr>

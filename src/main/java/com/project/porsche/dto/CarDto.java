@@ -1,18 +1,11 @@
-package com.project.porsche.entity;
+package com.project.porsche.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-@Table(name = "car")
-@Getter
-@Setter
-public class Car implements EntityObj {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Data
+public class CarDto implements Dto {
     private long id;
     private String model;
     private String price;
@@ -37,10 +30,5 @@ public class Car implements EntityObj {
     private int engineDisplacement;
     private String typeOfTransmission;
     private String driveType;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "car")
-    private Set<Picture> pics;
-
-    @OneToMany(mappedBy = "car", cascade = CascadeType.REFRESH)
-    private Set<Deal> deals;
+    private Set<PictureDto> pics;
 }

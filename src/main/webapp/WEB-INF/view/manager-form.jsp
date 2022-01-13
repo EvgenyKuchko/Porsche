@@ -51,6 +51,7 @@
 </header>
 <section class="user-info">
     <div class="container">
+        <%--@elvariable id="deal" type="com.project.porsche.dto.DealDto"--%>
         <form:form action="saveDeal" method="post" modelAttribute="deal">
             <input type="hidden" value="${deal.id}" name="dealId"/>
             <div class="information">
@@ -60,11 +61,11 @@
                 </div>
                 <div>
                     <label class="label-info"><spring:message code="app.manager.form.info.name"/></label>
-                    <form:input readonly="true" path="user.firstName"/>
+                    <form:input readonly="true" path="firstName"/>
                 </div>
                 <div>
                     <label class="label-info"><spring:message code="app.manager.form.info.lastName"/></label>
-                    <form:input readonly="true" path="user.lastName"/>
+                    <form:input readonly="true" path="lastName"/>
                 </div>
                 <div>
                     <label class="label-info"><spring:message code="app.manager.form.info.country"/></label>
@@ -80,11 +81,11 @@
                 </div>
                 <div>
                     <label class="label-info"><spring:message code="app.manager.form.info.model"/></label>
-                    <form:input readonly="true" path="car.model"/>
+                    <form:input readonly="true" path="model"/>
                 </div>
                 <div>
                     <label class="label-info"><spring:message code="app.manager.form.info.price"/></label>
-                    <form:input readonly="true" path="car.price"/>
+                    <form:input readonly="true" path="price"/>
                 </div>
             </div>
             <div>

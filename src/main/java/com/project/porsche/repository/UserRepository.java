@@ -4,5 +4,9 @@ import com.project.porsche.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByLogin(String Login);
+    boolean existsByLogin(String login);
+
+    User findByLogin(String login);
+
+    User findByFirstName(String firstName);
 }
