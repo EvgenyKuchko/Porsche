@@ -5,7 +5,7 @@ import com.project.porsche.entity.Role;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RoleTransformer implements Transformer<Role, RoleDto> {
+public class RoleTransformer implements Transformer<Role, RoleDto>{
     @Override
     public RoleDto transform(Role role) {
         RoleDto roleDto = new RoleDto();
