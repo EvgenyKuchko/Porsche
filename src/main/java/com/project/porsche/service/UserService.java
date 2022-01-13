@@ -1,9 +1,11 @@
 package com.project.porsche.service;
 
-import com.project.porsche.entity.Role;
-import com.project.porsche.entity.User;
+import com.project.porsche.dto.RoleDto;
+import com.project.porsche.dto.UserDto;
 import com.project.porsche.repository.RoleRepository;
 import com.project.porsche.repository.UserRepository;
+import com.project.porsche.transformers.RoleTransformer;
+import com.project.porsche.transformers.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,34 +32,40 @@ public class UserService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private UserTransformer userTransformer;
+
+    @Autowired
+    private RoleTransformer roleTransformer;
+
     @Transactional
-    public boolean saveNewUser(User user) {
-        User userFromDB = userRepository.findByLogin(user.getLogin());
-        if (userFromDB != null) {
+    public boolean saveNewUser(UserDto userDto) {
+        boolean isUserExist = userRepository.existsByLogin(userDto.getLogin());
+        if (isUserExist) {
             return false;
         }
-        user.setRoles(Collections.singleton(roleRepository.findRoleByName("USER")));
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        userDto.setRoles(Collections.singleton(roleTransformer.transform(roleRepository.findRoleByName("USER"))));
+        userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+        userRepository.save(userTransformer.transform(userDto));
         return true;
     }
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        User user = userRepository.findByLogin(login);
-        if (user == null) {
+        UserDto userDto = userTransformer.transform(userRepository.findByLogin(login));
+        if (userDto == null) {
             throw new UsernameNotFoundException("User not found");
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (Role role : user.getRoles()) {
+        for (RoleDto role : userDto.getRoles()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
-        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), grantedAuthorities);
+        return new org.springframework.security.core.userdetails.User(userDto.getLogin(), userDto.getPassword(), grantedAuthorities);
     }
 
     @Transactional
-    public User getUserByLogin(String login) {
-        return userRepository.findByLogin(login);
+    public UserDto getUserByLogin(String login) {
+        return userTransformer.transform(userRepository.findByLogin(login));
     }
 }

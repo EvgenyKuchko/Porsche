@@ -1,7 +1,8 @@
 package com.project.porsche.service;
 
-import com.project.porsche.entity.Car;
+import com.project.porsche.dto.CarDto;
 import com.project.porsche.repository.CarRepository;
+import com.project.porsche.transformers.CarTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,11 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
+    @Autowired
+    private CarTransformer carTransformer;
+
     @Transactional
-    public Car getCarByModel(String model) {
-        return carRepository.findByModel(model);
+    public CarDto getCarByModel(String model) {
+        return carTransformer.transform(carRepository.findByModel(model));
     }
 }

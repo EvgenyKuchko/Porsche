@@ -1,11 +1,7 @@
 package com.project.porsche.controller;
 
-import com.project.porsche.entity.Car;
-import com.project.porsche.entity.Deal;
-import com.project.porsche.entity.User;
-import com.project.porsche.service.CarService;
+import com.project.porsche.dto.DealRequestDto;
 import com.project.porsche.service.DealService;
-import com.project.porsche.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.sql.Timestamp;
 
 @Controller
 @RequestMapping("/deal")
@@ -27,32 +22,22 @@ public class DealController {
     @Autowired
     private DealService dealService;
 
-    @Autowired
-    private CarService carService;
-
-    @Autowired
-    private UserService userService;
-
     @GetMapping("/{model}")
-    public String showForm(@PathVariable String model, Model mod,
-                           Authentication authentication) {
-        Car car = carService.getCarByModel(model);
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        User user = userService.getUserByLogin(userDetails.getUsername());
-        Timestamp date = new Timestamp(System.currentTimeMillis());
-        mod.addAttribute("date", date);
-        mod.addAttribute("car", car);
-        mod.addAttribute("user", user);
-        mod.addAttribute("deal", new Deal());
+    public String showForm(@PathVariable String model, Model mod) {
+        mod.addAttribute("deal", new DealRequestDto());
+        mod.addAttribute("model", model);
         return "form";
     }
 
     @PostMapping("/{model}")
-    public String saveNewDeal(@Valid Deal deal, BindingResult bindingResult) {
+    public String saveNewDeal(@PathVariable String model,
+                              @Valid DealRequestDto deal,
+                              BindingResult bindingResult,
+                              Authentication authentication) {
         if (bindingResult.hasErrors()) {
             return "form";
         }
-        dealService.saveDeal(deal);
+        dealService.saveDeal(deal, model, (UserDetails) authentication.getPrincipal());
         return "redirect:/deal/success";
     }
 

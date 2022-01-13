@@ -1,6 +1,6 @@
 package com.project.porsche.controller;
 
-import com.project.porsche.entity.Car;
+import com.project.porsche.dto.CarDto;
 import com.project.porsche.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ public class ModelController {
 
     @GetMapping("/{model}")
     public String showModelInfo(@PathVariable String model, Model mod) {
-        Car car = carService.getCarByModel(model);
+        CarDto car = carService.getCarByModel(model);
         mod.addAttribute("car", car);
         return "model";
     }

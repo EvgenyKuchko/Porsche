@@ -57,7 +57,7 @@
         <div class="info">
             <p><spring:message code="app.form.info"/></p>
         </div>
-        <form:form action="saveNewDeal" method="post" modelAttribute="deal" class="form-signin">
+        <form:form action="${model}" method="post" modelAttribute="deal" class="form-signin">
             <div class="form-group ">
                 <br><form:errors path="city" class="err"/> <br>
                 <form:input path="city" type="text" autofocus="true" class="form-control"
@@ -66,10 +66,6 @@
                 <form:input path="country" type="text" class="form-control" placeholder="${country}"></form:input><br>
                 <br><form:errors path="phoneNumber" class="err"/><br>
                 <form:input path="phoneNumber" type="text" class="form-control" placeholder="${phone}"></form:input><br>
-                <form:input path="creatingDate" type="hidden" value="${date}"/>
-                <form:input path="status" type="hidden" value="Active"/>
-                <form:input path="car" type="hidden" value="${car.id}"/>
-                <form:input path="user" type="hidden" value="${user.id}"/>
                 <br>
                 <button class="btn-submit" type="submit"><spring:message code="app.form.submit"/></button>
             </div>
