@@ -37,7 +37,7 @@ public class DealService {
     @Transactional
     public void saveDeal(@Valid DealRequestDto dealDto, String model, UserDetails userDetails) {
         Deal deal = new Deal();
-        Car car = carRepository.getCarByModel(model);
+        Car car = carRepository.findByModel(model);
         deal.setCar(car);
         User user = userRepository.findByLogin(userDetails.getUsername());
         deal.setUser(user);
