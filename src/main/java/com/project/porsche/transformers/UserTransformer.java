@@ -18,31 +18,37 @@ public class UserTransformer implements Transformer<User, UserDto> {
 
     @Override
     public UserDto transform(User user) {
-        UserDto userDto = new UserDto();
-        userDto.setLogin(user.getLogin());
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastName());
-        userDto.setAge(user.getAge());
-        userDto.setPassword(user.getPassword());
-        Set<RoleDto> roles = user.getRoles().stream()
-                .map(roleTransformer::transform)
-                .collect(Collectors.toSet());
-        userDto.setRoles(roles);
-        return userDto;
+        return UserDto.builder()
+                .login(user.getLogin())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .age(user.getAge())
+                .password(user.getPassword())
+                .roles(getRoles(user))
+                .build();
     }
 
     @Override
     public User transform(UserDto userDto) {
-        User user = new User();
-        user.setLogin(userDto.getLogin());
-        user.setFirstName(userDto.getFirstName());
-        user.setLastName(userDto.getLastName());
-        user.setAge(userDto.getAge());
-        user.setPassword(userDto.getPassword());
-        Set<Role> roles = userDto.getRoles().stream()
+        return User.builder()
+                .login(userDto.getLogin())
+                .firstName(userDto.getFirstName())
+                .lastName(userDto.getLastName())
+                .age(userDto.getAge())
+                .password(userDto.getPassword())
+                .roles(getRoles(userDto))
+                .build();
+    }
+
+    private Set<RoleDto> getRoles(User user) {
+        return user.getRoles().stream()
                 .map(roleTransformer::transform)
                 .collect(Collectors.toSet());
-        user.setRoles(roles);
-        return user;
+    }
+
+    private Set<Role> getRoles(UserDto userDto) {
+        return userDto.getRoles().stream()
+                .map(roleTransformer::transform)
+                .collect(Collectors.toSet());
     }
 }

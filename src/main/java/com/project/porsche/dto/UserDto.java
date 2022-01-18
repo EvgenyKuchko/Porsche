@@ -1,10 +1,14 @@
 package com.project.porsche.dto;
 
-import lombok.Data;
+import lombok.*;
 
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDto implements Dto {
     private String firstName;
     private String lastName;

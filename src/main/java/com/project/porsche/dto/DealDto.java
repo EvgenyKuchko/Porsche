@@ -1,10 +1,14 @@
 package com.project.porsche.dto;
 
-import lombok.Data;
+import lombok.*;
 
 import java.sql.Timestamp;
 
-@Data
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class DealDto implements Dto {
     private long id;
     private String country;
