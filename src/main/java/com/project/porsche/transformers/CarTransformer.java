@@ -17,35 +17,38 @@ public class CarTransformer implements TransformerDto<Car, CarDto> {
 
     @Override
     public CarDto transform(Car car) {
-        CarDto carDto = new CarDto();
-        carDto.setId(car.getId());
-        carDto.setModel(car.getModel());
-        carDto.setPrice(car.getPrice());
-        carDto.setAcceleration(car.getAcceleration());
-        carDto.setBodyType(car.getBodyType());
-        carDto.setDriveType(car.getDriveType());
-        carDto.setCombinedFuelCons(car.getCombinedFuelCons());
-        carDto.setEngineDisplacement(car.getEngineDisplacement());
-        carDto.setFuelConsInTheCity(car.getFuelConsInTheCity());
-        carDto.setHeight(car.getHeight());
-        carDto.setInterior(car.getInterior());
-        carDto.setLength(car.getLength());
-        carDto.setTransmission(car.getTransmission());
-        carDto.setFuelType(car.getFuelType());
-        carDto.setPayload(car.getPayload());
-        carDto.setPlaces(car.getPlaces());
-        carDto.setPower(car.getPower());
-        carDto.setWeight(car.getWeight());
-        carDto.setFuelTankVolume(car.getFuelTankVolume());
-        carDto.setYearOfManufacture(car.getYearOfManufacture());
-        carDto.setMaxSpeed(car.getMaxSpeed());
-        carDto.setFuelConsOutsideTheCity(car.getFuelConsOutsideTheCity());
-        carDto.setNumberOfDoors(car.getNumberOfDoors());
-        carDto.setTypeOfTransmission(car.getTypeOfTransmission());
-        Set<PictureDto> pics = car.getPics().stream()
+        return CarDto.builder()
+                .id(car.getId())
+                .model(car.getModel())
+                .price(car.getPrice())
+                .acceleration(car.getAcceleration())
+                .bodyType(car.getBodyType())
+                .driveType(car.getDriveType())
+                .combinedFuelCons(car.getCombinedFuelCons())
+                .engineDisplacement(car.getEngineDisplacement())
+                .fuelConsInTheCity(car.getFuelConsInTheCity())
+                .height(car.getHeight())
+                .interior(car.getInterior())
+                .length(car.getLength())
+                .transmission(car.getTransmission())
+                .fuelType(car.getFuelType())
+                .payload(car.getPayload())
+                .places(car.getPlaces())
+                .power(car.getPower())
+                .weight(car.getWeight())
+                .fuelTankVolume(car.getFuelTankVolume())
+                .yearOfManufacture(car.getYearOfManufacture())
+                .maxSpeed(car.getMaxSpeed())
+                .fuelConsOutsideTheCity(car.getFuelConsOutsideTheCity())
+                .numberOfDoors(car.getNumberOfDoors())
+                .typeOfTransmission(car.getTypeOfTransmission())
+                .pics(getPics(car))
+                .build();
+    }
+
+    private Set<PictureDto> getPics(Car car) {
+        return car.getPics().stream()
                 .map(pictureTransformer::transform)
                 .collect(Collectors.toSet());
-        carDto.setPics(pics);
-        return carDto;
     }
 }

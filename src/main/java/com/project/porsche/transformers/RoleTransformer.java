@@ -8,15 +8,15 @@ import org.springframework.stereotype.Component;
 public class RoleTransformer implements Transformer<Role, RoleDto>{
     @Override
     public RoleDto transform(Role role) {
-        RoleDto roleDto = new RoleDto();
-        roleDto.setName(role.getName());
-        return roleDto;
+        return RoleDto.builder()
+                .name(role.getName())
+                .build();
     }
 
     @Override
     public Role transform(RoleDto roleDto) {
-        Role role = new Role();
-        role.setName(roleDto.getName());
-        return role;
+        return Role.builder()
+                .name(roleDto.getName())
+                .build();
     }
 }

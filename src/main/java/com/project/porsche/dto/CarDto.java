@@ -1,10 +1,12 @@
 package com.project.porsche.dto;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.util.Set;
 
-@Data
+@Getter
+@Builder
 public class CarDto implements Dto {
     private long id;
     private String model;

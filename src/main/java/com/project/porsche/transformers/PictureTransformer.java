@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 public class PictureTransformer implements TransformerDto<Picture, PictureDto> {
     @Override
     public PictureDto transform(Picture picture) {
-        PictureDto pictureDto = new PictureDto();
-        pictureDto.setFilePath(picture.getFilePath());
-        return pictureDto;
+        return PictureDto.builder()
+                .filePath(picture.getFilePath())
+                .build();
     }
 }

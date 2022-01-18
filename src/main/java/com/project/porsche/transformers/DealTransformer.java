@@ -9,17 +9,17 @@ public class DealTransformer implements TransformerDto<Deal, DealDto> {
 
     @Override
     public DealDto transform(Deal deal) {
-        DealDto dealDto = new DealDto();
-        dealDto.setId(deal.getId());
-        dealDto.setCity(deal.getCity());
-        dealDto.setCountry(deal.getCountry());
-        dealDto.setCreatingDate(deal.getCreatingDate());
-        dealDto.setModel(deal.getCar().getModel());
-        dealDto.setFirstName(deal.getUser().getFirstName());
-        dealDto.setLastName(deal.getUser().getLastName());
-        dealDto.setPrice(deal.getCar().getPrice());
-        dealDto.setStatus(deal.getStatus());
-        dealDto.setPhoneNumber(deal.getPhoneNumber());
-        return dealDto;
+        return DealDto.builder()
+                .id(deal.getId())
+                .city(deal.getCity())
+                .country(deal.getCountry())
+                .creatingDate(deal.getCreatingDate())
+                .model(deal.getCar().getModel())
+                .firstName(deal.getUser().getFirstName())
+                .lastName(deal.getUser().getLastName())
+                .price(deal.getCar().getPrice())
+                .status(deal.getStatus())
+                .phoneNumber(deal.getPhoneNumber())
+                .build();
     }
 }

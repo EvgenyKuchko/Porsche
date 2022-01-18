@@ -1,7 +1,6 @@
 package com.project.porsche.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -16,6 +15,9 @@ import java.util.Set;
 @Table(name = "user")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements UserDetails, EntityObj {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

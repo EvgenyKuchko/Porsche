@@ -1,8 +1,10 @@
 package com.project.porsche.dto;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 
-@Data
+@Getter
+@Builder
 public class PictureDto implements Dto {
     private String filePath;
 }
