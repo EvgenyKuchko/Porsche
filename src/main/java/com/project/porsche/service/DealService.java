@@ -63,7 +63,7 @@ public class DealService {
     }
 
     @Transactional
-    public void update(String status) {
-        dealRepository.changeStatus(status);
+    public void update(String status, Long id) {
+        dealRepository.changeStatus(status, id);
     }
 }
