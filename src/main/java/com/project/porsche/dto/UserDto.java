@@ -1,5 +1,6 @@
 package com.project.porsche.dto;
 
+import com.project.porsche.entity.RoleUser;
 import lombok.*;
 
 import java.util.Set;
@@ -15,5 +16,5 @@ public class UserDto implements Dto {
     private int age;
     private String login;
     private String password;
-    private Set<RoleDto> roles;
+    private Set<RoleUser> roles;
 }

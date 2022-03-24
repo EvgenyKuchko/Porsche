@@ -1,10 +1,8 @@
 package com.project.porsche.service;
 
-import com.project.porsche.dto.RoleDto;
 import com.project.porsche.dto.UserDto;
-import com.project.porsche.repository.RoleRepository;
+import com.project.porsche.entity.RoleUser;
 import com.project.porsche.repository.UserRepository;
-import com.project.porsche.transformers.RoleTransformer;
 import com.project.porsche.transformers.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,16 +25,10 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private UserTransformer userTransformer;
-
-    @Autowired
-    private RoleTransformer roleTransformer;
 
     @Transactional
     public boolean saveNewUser(UserDto userDto) {
@@ -44,7 +36,7 @@ public class UserService implements UserDetailsService {
         if (isUserExist) {
             return false;
         }
-        userDto.setRoles(Collections.singleton(roleTransformer.transform(roleRepository.findRoleByName("USER"))));
+        userDto.setRoles(Collections.singleton(RoleUser.USER));
         userDto.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         userRepository.save(userTransformer.transform(userDto));
         return true;
@@ -58,14 +50,9 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (RoleDto role : userDto.getRoles()) {
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+        for (RoleUser role : userDto.getRoles()) {
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getAuthority()));
         }
         return new org.springframework.security.core.userdetails.User(userDto.getLogin(), userDto.getPassword(), grantedAuthorities);
-    }
-
-    @Transactional
-    public UserDto getUserByLogin(String login) {
-        return userTransformer.transform(userRepository.findByLogin(login));
     }
 }

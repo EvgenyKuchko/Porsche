@@ -41,14 +41,10 @@ public class User implements UserDetails, EntityObj {
     @OneToMany(mappedBy = "user")
     private Set<Deal> deals;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Set<Role> roles;
+    @ElementCollection(targetClass = RoleUser.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<RoleUser> roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

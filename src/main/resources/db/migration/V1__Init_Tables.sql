@@ -45,12 +45,6 @@ create table pictures
     car_id    bigint not null,
     primary key (id)
 );
-create table role
-(
-    id   bigint  not null auto_increment,
-    name varchar(255),
-    primary key (id)
-);
 create table user
 (
     id         bigint  not null auto_increment,
@@ -63,9 +57,8 @@ create table user
 );
 create table user_role
 (
-    user_id bigint not null,
-    role_id bigint not null,
-    primary key (user_id, role_id)
+    user_id    bigint not null,
+    roles      varchar(15)
 );
 alter table deal
     add constraint deal_car_fk foreign key (car_id) references car;
@@ -73,7 +66,5 @@ alter table deal
     add constraint deal_user_fk foreign key (user_id) references user;
 alter table pictures
     add constraint pic_car_fk foreign key (car_id) references car;
-alter table user_role
-    add constraint user_role_role_fk foreign key (role_id) references role;
 alter table user_role
     add constraint user_role_user_fk foreign key (user_id) references user;
