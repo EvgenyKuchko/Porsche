@@ -1,23 +1,31 @@
 package com.project.porsche.transformers;
 
 import com.project.porsche.dto.CarDto;
+import com.project.porsche.dto.PictureDto;
 import com.project.porsche.entity.Car;
 import com.project.porsche.entity.Picture;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class CarTransformerTest {
 
-    private static final CarTransformer carTransformer = new CarTransformer();
+    @Autowired
+    private CarTransformer carTransformer;
 
     @Test
     public void shouldTransformCarToCarDto() {
         Car car = new Car();
-        car.setModel("918");
+        car.setModel("970");
         car.setPrice("1000");
         car.setAcceleration(1.3f);
         car.setBodyType("sedan");
@@ -41,9 +49,9 @@ public class CarTransformerTest {
         car.setWeight(2888.5f);
         car.setYearOfManufacture(2018);
         Picture picOne = new Picture();
-        picOne.setFilePath("img/img1.jpeg");
+        picOne.setFilePath("/static/img/models/970/970-1.jpeg");
         Picture picTwo = new Picture();
-        picTwo.setFilePath("img/img2.jpeg");
+        picTwo.setFilePath("/static/img/models/970/970-2.jpeg");
         Set<Picture> pictures = new HashSet<>();
         pictures.add(picOne);
         pictures.add(picTwo);
