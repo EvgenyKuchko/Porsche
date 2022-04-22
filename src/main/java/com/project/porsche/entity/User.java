@@ -53,7 +53,7 @@ public class User implements UserDetails, EntityObj {
 
     @Override
     public String getUsername() {
-        return getUsername();
+        return login;
     }
 
     @Override
