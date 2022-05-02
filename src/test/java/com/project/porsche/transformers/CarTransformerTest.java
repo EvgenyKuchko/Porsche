@@ -1,7 +1,6 @@
 package com.project.porsche.transformers;
 
 import com.project.porsche.dto.CarDto;
-import com.project.porsche.dto.PictureDto;
 import com.project.porsche.entity.Car;
 import com.project.porsche.entity.Picture;
 import org.junit.Test;

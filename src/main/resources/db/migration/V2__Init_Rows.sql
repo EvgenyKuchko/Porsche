@@ -1,3 +1,15 @@
+INSERT INTO user
+VALUES (1, 18, 'manager', 'manager', 'manager', '$2a$08$gUILl/OPpxHGQNrmHK7Rhu9emIoLu6PtkIwbEhv6XfHK7V1Lxhjku');
+
+INSERT INTO user
+VALUES (2, 18, 'user', 'user', 'qwerty', '$2a$08$rqIYf4t1ZBl1X37mpR3Mf.hvI/ff5oz/6i3p7wwOYPTY6OEgFbe7W');
+
+INSERT INTO user_role
+VALUES (1, 'USER'), (1, 'MANAGER');
+
+INSERT INTO user_role
+VALUES (2, 'USER');
+
 INSERT INTO car
 VALUES (1, 2.9, 'coupe', 9.1, 'four-wheel drive', 3800, 11.8, 7.5, 68.5, 'petrol', 1.28, 'leather', 4.51, 330, 'Turbo', 2,
         390, 4, 580, 174300, 7, 'manual', 1600, 2016);
@@ -45,7 +57,7 @@ INSERT INTO pictures
 VALUES (18, '/static/img/models/gts/gts6.jpeg', 3);
 INSERT INTO car
 VALUES (4, 5.0, 'CUV', 9.9, 'four-wheel drive', 2995, 12.3, 8.5, 75.0, 'petrol', 1.68, 'leather', 4.93, 243, 'Coupe', 5,
-           765, 5, 340, 85260, 8, 'automatic', 2030, 2017);
+        765, 5, 340, 85260, 8, 'automatic', 2030, 2017);
 INSERT INTO pictures
 VALUES (19, '/static/img/models/coupe/coupe1.jpeg', 4);
 INSERT INTO pictures
@@ -88,3 +100,6 @@ INSERT INTO pictures
 VALUES (35, '/static/img/models/turismo/turismo5.jpeg', 6);
 INSERT INTO pictures
 VALUES (36, '/static/img/models/turismo/turismo6.jpeg', 6);
+
+INSERT INTO deal
+VALUES (1, 'Minsk', 'Belarus', '1970-01-01 00:00:01', '+375293332222', 'Active', 1, 2);

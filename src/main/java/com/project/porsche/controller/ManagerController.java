@@ -24,14 +24,14 @@ public class ManagerController {
     }
 
     @GetMapping("/{dealId}")
-    public String updateCourse(@PathVariable Long dealId, Model model) {
+    public String getDealById(@PathVariable long dealId, Model model) {
         DealDto dealDto = dealService.getDeal(dealId);
         model.addAttribute("deal", dealDto);
         return "manager-form";
     }
 
     @PostMapping("/{dealId}")
-    public String saveDeal(@ModelAttribute("deal") DealDto deal, @RequestParam("dealId") Long dealId) {
+    public String saveDeal(@ModelAttribute("deal") DealDto deal, @RequestParam("dealId") long dealId) {
         dealService.update(deal.getStatus(), dealId);
         return "redirect:/deals";
     }
