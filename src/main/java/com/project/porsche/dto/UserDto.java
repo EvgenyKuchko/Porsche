@@ -10,6 +10,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class UserDto implements Dto {
     private String firstName;
     private String lastName;

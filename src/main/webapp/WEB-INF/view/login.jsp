@@ -19,12 +19,12 @@
         </div>
         <div class="form-group">
             <input name="username" type="text" class="form-control"
-                   placeholder="<spring:message code="app.login.login"/>" autofocus="true"/><br>
-            <br>
+                   placeholder="<spring:message code="app.login.login"/>" autofocus="true"/></br>
+            </br>
             <input name="password" type="password" class="form-control"
                    placeholder="<spring:message code="app.login.password"/>"/>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/><br>
-            <br>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/></br>
+            </br>
             <button class="btn-submit" type="submit"><spring:message code="app.login.submit"/></button>
         </div>
     </form>

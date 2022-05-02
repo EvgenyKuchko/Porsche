@@ -58,12 +58,12 @@ public class DealService {
     }
 
     @Transactional
-    public DealDto getDeal(Long id) {
+    public DealDto getDeal(long id) {
         return dealTransformer.transform(dealRepository.getById(id));
     }
 
     @Transactional
-    public void update(String status, Long id) {
+    public void update(String status, long id) {
         dealRepository.changeStatus(status, id);
     }
 }

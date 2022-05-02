@@ -15,7 +15,7 @@
     <div class="headerContainer">
         <div class="wrapper">
             <div class="logoImg" id="logoImg">
-                <img src="/static/img/logoP.png" alt="logo" class="logoImg">
+                <img src="/static/img/logoP.png" alt="logo" class="logoImg"/>
             </div>
             <div class="logoText" id="logoText">
                 <h1 class="logoText">Porsche</h1>
@@ -30,8 +30,8 @@
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </deal>
                     <div class="userName">
-                        <h4><spring:message code="app.greeting"/>,<br> ${pageContext.request.userPrincipal.name}
-                            <a href="<c:url value='/logout' />" class="btnR"><spring:message code="app.logout"/></a><br>
+                        <h4><spring:message code="app.greeting"/>,<br/> ${pageContext.request.userPrincipal.name}
+                            <a href="<c:url value='/logout' />" class="btnR"><spring:message code="app.logout"/></a></br>
                         </h4>
                     </div>
                 </c:if>
