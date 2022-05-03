@@ -28,7 +28,10 @@
         <form:input path="lastName" type="text" placeholder="${lastName}" class="form-control"></form:input>
         <br><form:errors path="age" class="err"/><br>
         <form:input path="age" type="number" placeholder="${age}" class="form-control"></form:input>
-        <br><form:errors path="login" class="err"/><br>
+        <br><form:errors path="login" class="err"/>
+        <c:if test="${!loginMessage}">
+            <p class="err">${loginMessage}</p>
+        </c:if>
         <form:input path="login" type="text" placeholder="${login}" class="form-control"></form:input>
         <br><form:errors path="password" class="err"/><br>
         <form:input path="password" type="password" placeholder="${password}" class="form-control"></form:input><br>

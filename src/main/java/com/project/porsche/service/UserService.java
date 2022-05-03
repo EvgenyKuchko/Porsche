@@ -55,4 +55,13 @@ public class UserService implements UserDetailsService {
         }
         return new org.springframework.security.core.userdetails.User(userDto.getLogin(), userDto.getPassword(), grantedAuthorities);
     }
+
+    @Transactional
+    public boolean findUserByLogin(String login) {
+        boolean isUserExist = userRepository.existsByLogin(login);
+        if (isUserExist) {
+            return true;
+        } else
+            return false;
+    }
 }

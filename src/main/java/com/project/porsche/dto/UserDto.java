@@ -28,7 +28,7 @@ public class UserDto implements Dto {
     @Size(min = 5, message = "login name must be 5 or more characters")
     private String login;
     @NotNull
-    @Size(min = 5, message = "password name must be 5 or more characters")
+    @Size(min = 5, message = "password must be 5 or more characters")
     private String password;
     private Set<RoleUser> roles;
 }
