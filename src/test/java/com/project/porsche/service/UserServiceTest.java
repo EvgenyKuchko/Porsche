@@ -5,6 +5,7 @@ import com.project.porsche.entity.RoleUser;
 import com.project.porsche.repository.UserRepository;
 import com.project.porsche.transformers.UserTransformer;
 import org.hamcrest.CoreMatchers;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,52 +36,49 @@ class UserServiceTest {
     @Mock
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    private String login;
+    private UserDto user;
+
+    @BeforeEach
+    void setUp() {
+        login = "login";
+
+        user = new UserDto();
+        user.setLogin("login");
+        user.setPassword("password");
+    }
+
     @Test
     void shouldSaveUserAndReturnTrue() {
-        UserDto savedUser = new UserDto();
-        savedUser.setPassword("password");
+        when(bCryptPasswordEncoder.encode(user.getPassword())).thenReturn("xxx");
 
-        when(bCryptPasswordEncoder.encode(savedUser.getPassword())).thenReturn("xxx");
-
-        boolean isUserSaved = userService.saveNewUser(savedUser);
+        boolean isUserSaved = userService.saveNewUser(user);
 
         assertTrue(isUserSaved);
-        assertTrue(CoreMatchers.is(savedUser.getRoles()).matches(Collections.singleton(RoleUser.USER)));
-        assertTrue(CoreMatchers.is(savedUser.getPassword()).matches("xxx"));
+        assertTrue(CoreMatchers.is(user.getRoles()).matches(Collections.singleton(RoleUser.USER)));
+        assertTrue(CoreMatchers.is(user.getPassword()).matches("xxx"));
     }
 
     @Test
     void shouldFailSaveUserAndReturnFalseIfUserLoginAlreadyExist() {
-        UserDto savedUser = new UserDto();
-        savedUser.setLogin("login");
+        when(userRepository.existsByLogin(user.getLogin())).thenReturn(true);
 
-        when(userRepository.existsByLogin(savedUser.getLogin())).thenReturn(true);
-
-        boolean isUserSaved = userService.saveNewUser(savedUser);
+        boolean isUserSaved = userService.saveNewUser(user);
 
         assertFalse(isUserSaved);
     }
 
     @Test
     void loadUserByUsernameShouldFailAndThrowUserNotFoundExceptionIfUserNotExist() {
-        String login = "login";
-
         when(userRepository.findByLogin(anyString())).thenReturn(null);
 
-        assertThrows(UsernameNotFoundException.class, () -> {
-
-            userService.loadUserByUsername(login);
-
-        });
+        assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(login));
     }
 
     @Test
     void shouldLoadAndReturnUserByUsername() {
         Set<RoleUser> roles = new HashSet<>();
         roles.add(RoleUser.USER);
-        UserDto user = new UserDto();
-        user.setLogin("login");
-        user.setPassword("password");
         user.setRoles(roles);
 
         when(userTransformer.transform(userRepository.findByLogin(anyString()))).thenReturn(user);
@@ -89,5 +87,14 @@ class UserServiceTest {
 
         assertThat(user.getLogin()).isEqualTo(userDetails.getUsername());
         assertThat(user.getPassword()).isEqualTo(userDetails.getPassword());
+    }
+
+    @Test
+    void shouldReturnTrueIfUserFoundByLogin() {
+        when(userRepository.existsByLogin(login)).thenReturn(true);
+
+        boolean find = userRepository.existsByLogin(login);
+
+        assertTrue(find);
     }
 }

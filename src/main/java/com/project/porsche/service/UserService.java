@@ -58,10 +58,6 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public boolean findUserByLogin(String login) {
-        boolean isUserExist = userRepository.existsByLogin(login);
-        if (isUserExist) {
-            return true;
-        } else
-            return false;
+        return userRepository.existsByLogin(login);
     }
 }
