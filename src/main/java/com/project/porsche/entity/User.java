@@ -22,20 +22,10 @@ public class User implements UserDetails, EntityObj {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotNull
-    @Size(min = 2, max = 15, message = "first name must be 2 or more characters")
     private String firstName;
-    @NotNull
-    @Size(min = 2, max = 20, message = "last name must be 2 or more characters")
     private String lastName;
-    @NotNull
-    @Min(value = 18, message = "age cannot be less than 18")
     private int age;
-    @NotNull
-    @Size(min = 5, message = "login name must be 5 or more characters")
     private String login;
-    @NotNull
-    @Size(min = 5, message = "password name must be 5 or more characters")
     private String password;
 
     @OneToMany(mappedBy = "user")
