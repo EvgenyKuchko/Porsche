@@ -44,7 +44,7 @@ class UserServiceTest {
         login = "login";
 
         user = new UserDto();
-        user.setLogin("login");
+        user.setLogin(login);
         user.setPassword("password");
     }
 
