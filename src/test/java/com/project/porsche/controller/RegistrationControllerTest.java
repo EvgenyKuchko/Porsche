@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.validation.BindingResult;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
@@ -29,6 +30,9 @@ class RegistrationControllerTest {
 
     @MockBean
     private UserService userService;
+
+    @MockBean
+    private BindingResult bindingResult;
 
     @Test
     void shouldReturnRegistrationPage() throws Exception {
@@ -50,5 +54,27 @@ class RegistrationControllerTest {
                 .andExpect(redirectedUrl("/login"));
 
         verify(userService, times(1)).saveNewUser(user);
+    }
+
+    @Test
+    void shouldBanRegistrationIfFieldsHaveErrorsAndReturnRegistrationPage() throws Exception {
+        given(bindingResult.hasErrors()).willReturn(true);
+
+        this.mockMvc.perform(post("/registration"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(forwardedUrl("/WEB-INF/view/registration.jsp"));
+    }
+
+    @Test
+    void shouldBanRegistrationIfLoginAlreadyExistAndReturnRegistrationPage() throws Exception {
+        String login = "login";
+
+        given(userService.findUserByLogin(login)).willReturn(true);
+
+        this.mockMvc.perform(post("/registration"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(forwardedUrl("/WEB-INF/view/registration.jsp"));
     }
 }

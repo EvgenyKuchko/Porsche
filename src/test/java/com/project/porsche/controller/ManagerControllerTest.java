@@ -2,6 +2,7 @@ package com.project.porsche.controller;
 
 import com.project.porsche.dto.DealDto;
 import com.project.porsche.service.DealService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,23 @@ public class ManagerControllerTest {
     @MockBean
     private DealService dealService;
 
+    private DealDto testDeal;
+    private long dealId;
+
+    @Before
+    public void setUp() {
+        dealId = 1L;
+
+        testDeal = DealDto.builder()
+                .id(dealId)
+                .city("Minsk")
+                .country("Belarus")
+                .status("Active")
+                .price("10000")
+                .model("911")
+                .build();
+    }
+
     @Test
     public void shouldRedirectIfUserHaveNotManagerRole() throws Exception {
         this.mockMvc.perform(get("/deals"))
@@ -62,12 +80,6 @@ public class ManagerControllerTest {
     @Test
     @WithUserDetails("manager")
     public void shouldReturnPageWithAllDeals() throws Exception {
-
-        DealDto testDeal = DealDto.builder()
-                .price("10000")
-                .model("911")
-                .build();
-
         List<DealDto> allDeals = Collections.singletonList(testDeal);
 
         given(dealService.getDeals()).willReturn(allDeals);
@@ -89,16 +101,6 @@ public class ManagerControllerTest {
     @Test
     @WithUserDetails("manager")
     public void shouldReturnDealPageById() throws Exception {
-
-        long dealId = 1L;
-
-        DealDto testDeal = DealDto.builder()
-                .id(dealId)
-                .city("Minsk")
-                .country("Belarus")
-                .status("Active")
-                .build();
-
         given(dealService.getDeal(dealId)).willReturn(testDeal);
 
         this.mockMvc.perform(get("/deals/{id}", testDeal.getId()))
@@ -115,16 +117,7 @@ public class ManagerControllerTest {
     @Test
     @WithUserDetails("manager")
     public void shouldSuccessUpdateDealAndRedirectedToDeals() throws Exception {
-
-        long dealId = 1L;
-        String newStatus = "Failed";
-
-        DealDto testDeal = DealDto.builder()
-                .id(dealId)
-                .status(newStatus)
-                .build();
-
-        doNothing().when(dealService).update(newStatus, dealId);
+        doNothing().when(dealService).update(testDeal.getStatus(), dealId);
 
         this.mockMvc.perform(post("/deals/{dealId}", testDeal.getId())
                 .param("dealId", String.valueOf(1L))  // передает параметры помеченные @RequestParam в контроллере
@@ -133,6 +126,6 @@ public class ManagerControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/deals"));
 
-        verify(dealService, times(1)).update(newStatus, dealId);
+        verify(dealService, times(1)).update(testDeal.getStatus(), dealId);
     }
 }

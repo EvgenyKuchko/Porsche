@@ -2,6 +2,7 @@ package com.project.porsche.controller;
 
 import com.project.porsche.dto.DealRequestDto;
 import com.project.porsche.service.DealService;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.validation.BindingResult;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -32,11 +35,23 @@ public class DealControllerTest {
     @MockBean
     private DealService dealService;
 
+    @MockBean
+    private BindingResult bindingResult;
+
+    private DealRequestDto deal;
+    private String model;
+
+    @Before
+    public void setUp() {
+        deal = new DealRequestDto();
+        deal.setPhoneNumber("+375291112233");
+        deal.setCountry("Belarus");
+        deal.setCity("Brest");
+        model = "911";
+    }
+
     @Test
     public void shouldRedirectToLoginPageNotAuthUser() throws Exception {
-
-        String model = "911";
-
         this.mockMvc.perform(get("/deal/{model}", model))
                 .andDo(print())
                 .andExpect(status().is3xxRedirection())
@@ -46,9 +61,6 @@ public class DealControllerTest {
     @Test
     @WithUserDetails("qwerty")
     public void shouldReturnPageIfUserAuth() throws Exception {
-
-        String model = "911";
-
         this.mockMvc.perform(get("/deal/{model}", model))
                 .andDo(print())
                 .andExpect(status().isOk())
@@ -58,12 +70,6 @@ public class DealControllerTest {
     @Test
     @WithUserDetails("qwerty")
     public void shouldSaveNewDealAndRedirectToSuccessPage() throws Exception {
-
-        DealRequestDto deal = new DealRequestDto();
-        deal.setPhoneNumber("+375291112233");
-        deal.setCountry("Belarus");
-        deal.setCity("Brest");
-        String model = "911";
         UserDetails loggedUser = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         doNothing().when(dealService).saveDeal(deal, model, loggedUser);
@@ -74,6 +80,17 @@ public class DealControllerTest {
                 .andExpect(redirectedUrl("/deal/success"));
 
         verify(dealService, times(1)).saveDeal(deal, model, loggedUser);
+    }
+
+    @Test
+    @WithUserDetails("qwerty")
+    public void shouldBanSaveNewDealIfFieldsHasErrorsAndReturnSamePage() throws Exception {
+        given(bindingResult.hasErrors()).willReturn(true);
+
+        this.mockMvc.perform(post("/deal/{model}", model))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(forwardedUrl("/WEB-INF/view/form.jsp"));
     }
 
     @Test
