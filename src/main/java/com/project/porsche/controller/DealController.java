@@ -28,10 +28,11 @@ public class DealController {
 
     @PostMapping("/{model}")
     public String saveNewDeal(@PathVariable String model,
-                              @ModelAttribute("deal") DealRequestDto deal,
+                              @Valid @ModelAttribute("deal") DealRequestDto deal,
                               BindingResult bindingResult,
                               Authentication authentication) {
         if (bindingResult.hasErrors()) {
+
             return "form";
         }
         dealService.saveDeal(deal, model, (UserDetails) authentication.getPrincipal());

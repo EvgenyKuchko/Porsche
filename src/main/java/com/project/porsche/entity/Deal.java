@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
 
 @Entity
@@ -16,11 +14,8 @@ public class Deal implements EntityObj {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotBlank(message = "Country must be specified")
     private String country;
-    @NotBlank(message = "City must be specified")
     private String city;
-    @Pattern(regexp = "\\+[0-9]{12}", message = "Phone number must start with +, then - 12 numbers")
     private String phoneNumber;
     private String status;
     private Timestamp creatingDate;
