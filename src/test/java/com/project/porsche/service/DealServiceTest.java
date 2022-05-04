@@ -17,7 +17,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +45,10 @@ class DealServiceTest {
 
         when(dealRepository.getById(deal.getId())).thenReturn(deal);
 
+        dealService.getDeal(deal.getId());
+
+        verify(dealRepository, times(1)).getById(deal.getId());
+        verifyNoMoreInteractions(dealRepository);
         assertThat(dealService.getDeal(deal.getId())).isEqualTo(dealTransformer.transform(deal));
     }
 
@@ -61,6 +64,8 @@ class DealServiceTest {
 
         List<DealDto> dtoDeals = dealService.getDeals();
 
+        verify(dealRepository).findAll();
+        verifyNoMoreInteractions(dealRepository);
         assertThat(deals.size()).isEqualTo(dtoDeals.size());
     }
 
@@ -89,7 +94,9 @@ class DealServiceTest {
         dealService.saveDeal(dealRequestDto, model, userDetails);
 
         verify(carRepository, times(1)).findByModel(model);
+        verifyNoMoreInteractions(carRepository);
         verify(userRepository, times(1)).findByLogin(userDetails.getUsername());
+        verifyNoMoreInteractions(userRepository);
         ArgumentCaptor<Deal> captor = ArgumentCaptor.forClass(Deal.class);  // создается объект захватчика Deal класса
         verify(dealRepository).save(captor.capture());   // захват объекта deal
         Deal value = captor.getValue();  // сохранение в объект захваченной переменной
@@ -106,5 +113,6 @@ class DealServiceTest {
         dealService.update(anyString(), anyLong());
 
         verify(dealRepository, times(1)).changeStatus(anyString(), anyLong());
+        verifyNoMoreInteractions(dealRepository);
     }
 }

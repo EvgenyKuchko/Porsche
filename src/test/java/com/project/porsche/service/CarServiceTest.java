@@ -4,6 +4,7 @@ import com.project.porsche.entity.Car;
 import com.project.porsche.entity.Picture;
 import com.project.porsche.repository.CarRepository;
 import com.project.porsche.transformers.CarTransformer;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CarServiceTest {
@@ -26,10 +27,13 @@ class CarServiceTest {
     @Mock
     private CarTransformer carTransformer;
 
-    @Test
-    void shouldReturnCarByModel() {
-        String model = "911";
-        Car car = new Car();
+    private Car car;
+    private String model;
+
+    @BeforeEach
+    void setUp() {
+        model = "911";
+        car = new Car();
         car.setModel(model);
         car.setPrice("1000");
         car.setAcceleration(1.3f);
@@ -53,6 +57,10 @@ class CarServiceTest {
         car.setTypeOfTransmission("handle");
         car.setWeight(2888.5f);
         car.setYearOfManufacture(2018);
+    }
+
+    @Test
+    void shouldReturnCarByModel() {
         Picture picOne = new Picture();
         picOne.setFilePath("/static/img/models/970/970-1.jpeg");
         Picture picTwo = new Picture();
@@ -64,6 +72,10 @@ class CarServiceTest {
 
         when(carRepository.findByModel(model)).thenReturn(car);
 
+        carService.getCarByModel(model);
+
+        verify(carRepository).findByModel(model);
+        verifyNoMoreInteractions(carRepository);
         assertThat(carService.getCarByModel(model)).isEqualTo(carTransformer.transform(car));
     }
 }

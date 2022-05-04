@@ -2,6 +2,7 @@ package com.project.porsche.service;
 
 import com.project.porsche.dto.UserDto;
 import com.project.porsche.entity.RoleUser;
+import com.project.porsche.entity.User;
 import com.project.porsche.repository.UserRepository;
 import com.project.porsche.transformers.UserTransformer;
 import org.hamcrest.CoreMatchers;
@@ -21,8 +22,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -44,35 +44,48 @@ class UserServiceTest {
         login = "login";
 
         user = new UserDto();
-        user.setLogin("login");
+        user.setLogin(login);
         user.setPassword("password");
     }
 
     @Test
     void shouldSaveUserAndReturnTrue() {
+        User userEntity = new User();
+
+        when(userRepository.existsByLogin(user.getLogin())).thenReturn(false);
         when(bCryptPasswordEncoder.encode(user.getPassword())).thenReturn("xxx");
+        when(userTransformer.transform(user)).thenReturn(userEntity);
+        when(userRepository.save(userEntity)).thenReturn(userEntity);
 
         boolean isUserSaved = userService.saveNewUser(user);
 
+        verify(userRepository, times(1)).existsByLogin(user.getLogin());
+        verify(userTransformer, times(1)).transform(user);
+        verifyNoMoreInteractions(userTransformer);
+        verify(userRepository, times(1)).save(userEntity);
+        verifyNoMoreInteractions(userRepository);
         assertTrue(isUserSaved);
         assertTrue(CoreMatchers.is(user.getRoles()).matches(Collections.singleton(RoleUser.USER)));
         assertTrue(CoreMatchers.is(user.getPassword()).matches("xxx"));
     }
 
     @Test
-    void shouldFailSaveUserAndReturnFalseIfUserLoginAlreadyExist() {
+    void shouldFailSaveUserAndReturnFalseIfUserLoginIsAlreadyExist() {
         when(userRepository.existsByLogin(user.getLogin())).thenReturn(true);
 
         boolean isUserSaved = userService.saveNewUser(user);
 
+        verify(userRepository, times(1)).existsByLogin(user.getLogin());
+        verifyNoMoreInteractions(userRepository);
         assertFalse(isUserSaved);
     }
 
     @Test
     void loadUserByUsernameShouldFailAndThrowUserNotFoundExceptionIfUserNotExist() {
-        when(userRepository.findByLogin(anyString())).thenReturn(null);
+        when(userRepository.findByLogin(login)).thenReturn(null);
 
-        assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(login));
+        Throwable exception = assertThrows(UsernameNotFoundException.class, () -> userService.loadUserByUsername(login));
+        assertEquals("User not found", exception.getMessage());
     }
 
     @Test
@@ -81,10 +94,12 @@ class UserServiceTest {
         roles.add(RoleUser.USER);
         user.setRoles(roles);
 
-        when(userTransformer.transform(userRepository.findByLogin(anyString()))).thenReturn(user);
+        when(userTransformer.transform(userRepository.findByLogin(login))).thenReturn(user);
 
-        UserDetails userDetails = userService.loadUserByUsername("login");
+        UserDetails userDetails = userService.loadUserByUsername(login);
 
+        verify(userTransformer, times(1)).transform(userRepository.findByLogin(login));
+        verifyNoMoreInteractions(userTransformer);
         assertThat(user.getLogin()).isEqualTo(userDetails.getUsername());
         assertThat(user.getPassword()).isEqualTo(userDetails.getPassword());
     }
@@ -95,6 +110,8 @@ class UserServiceTest {
 
         boolean find = userRepository.existsByLogin(login);
 
+        verify(userRepository, times(1)).existsByLogin(login);
+        verifyNoMoreInteractions(userRepository);
         assertTrue(find);
     }
 }
