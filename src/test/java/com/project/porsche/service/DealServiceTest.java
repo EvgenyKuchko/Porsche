@@ -11,6 +11,7 @@ import com.project.porsche.repository.UserRepository;
 import com.project.porsche.transformers.DealTransformer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -74,7 +75,6 @@ class DealServiceTest {
         dealRequestDto.setCity("London");
         dealRequestDto.setCountry("Great Britain");
         dealRequestDto.setPhoneNumber("+123557896542");
-        deal.setCreatingDate(new Timestamp(System.currentTimeMillis()));
         deal.setStatus("Active");
         deal.setCar(car);
         deal.setUser(user);
@@ -88,8 +88,17 @@ class DealServiceTest {
 
         dealService.saveDeal(dealRequestDto, model, userDetails);
 
-        assertThat(deal.getCity()).isEqualTo(dealRequestDto.getCity());
-        assertThat(deal.getStatus()).isEqualTo("Active");
+        verify(carRepository, times(1)).findByModel(model);
+        verify(userRepository, times(1)).findByLogin(userDetails.getUsername());
+        ArgumentCaptor<Deal> captor = ArgumentCaptor.forClass(Deal.class);  // создается объект захватчика Deal класса
+        verify(dealRepository).save(captor.capture());   // захват объекта deal
+        Deal value = captor.getValue();  // сохранение в объект захваченной переменной
+        assertThat(value.getStatus()).isEqualTo(deal.getStatus());
+        assertThat(value.getCountry()).isEqualTo(deal.getCountry());
+        assertThat(value.getCity()).isEqualTo(deal.getCity());
+        assertThat(value.getPhoneNumber()).isEqualTo(deal.getPhoneNumber());
+        assertThat(value.getUser()).isEqualTo(deal.getUser());
+        assertThat(value.getCar()).isEqualTo(deal.getCar());
     }
 
     @Test
