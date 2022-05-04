@@ -11,12 +11,12 @@ import com.project.porsche.repository.UserRepository;
 import com.project.porsche.transformers.DealTransformer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +45,10 @@ class DealServiceTest {
 
         when(dealRepository.getById(deal.getId())).thenReturn(deal);
 
+        dealService.getDeal(deal.getId());
+
+        verify(dealRepository, times(1)).getById(deal.getId());
+        verifyNoMoreInteractions(dealRepository);
         assertThat(dealService.getDeal(deal.getId())).isEqualTo(dealTransformer.transform(deal));
     }
 
@@ -60,6 +64,8 @@ class DealServiceTest {
 
         List<DealDto> dtoDeals = dealService.getDeals();
 
+        verify(dealRepository).findAll();
+        verifyNoMoreInteractions(dealRepository);
         assertThat(deals.size()).isEqualTo(dtoDeals.size());
     }
 
@@ -74,7 +80,6 @@ class DealServiceTest {
         dealRequestDto.setCity("London");
         dealRequestDto.setCountry("Great Britain");
         dealRequestDto.setPhoneNumber("+123557896542");
-        deal.setCreatingDate(new Timestamp(System.currentTimeMillis()));
         deal.setStatus("Active");
         deal.setCar(car);
         deal.setUser(user);
@@ -88,8 +93,19 @@ class DealServiceTest {
 
         dealService.saveDeal(dealRequestDto, model, userDetails);
 
-        assertThat(deal.getCity()).isEqualTo(dealRequestDto.getCity());
-        assertThat(deal.getStatus()).isEqualTo("Active");
+        verify(carRepository, times(1)).findByModel(model);
+        verifyNoMoreInteractions(carRepository);
+        verify(userRepository, times(1)).findByLogin(userDetails.getUsername());
+        verifyNoMoreInteractions(userRepository);
+        ArgumentCaptor<Deal> captor = ArgumentCaptor.forClass(Deal.class);  // создается объект захватчика Deal класса
+        verify(dealRepository).save(captor.capture());   // захват объекта deal
+        Deal value = captor.getValue();  // сохранение в объект захваченной переменной
+        assertThat(value.getStatus()).isEqualTo(deal.getStatus());
+        assertThat(value.getCountry()).isEqualTo(deal.getCountry());
+        assertThat(value.getCity()).isEqualTo(deal.getCity());
+        assertThat(value.getPhoneNumber()).isEqualTo(deal.getPhoneNumber());
+        assertThat(value.getUser()).isEqualTo(deal.getUser());
+        assertThat(value.getCar()).isEqualTo(deal.getCar());
     }
 
     @Test
@@ -97,5 +113,6 @@ class DealServiceTest {
         dealService.update(anyString(), anyLong());
 
         verify(dealRepository, times(1)).changeStatus(anyString(), anyLong());
+        verifyNoMoreInteractions(dealRepository);
     }
 }
