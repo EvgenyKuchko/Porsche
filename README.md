@@ -9,8 +9,8 @@ Cтартовая страница->http://localhost:8080/main
 "MANAGER" есть доступ к странице со списком потенциальных сделок и всей информации по ним с возможностью изменения их
 статуса.
 
-В проекте были использованы технологии: Spring MVC, Spring Data, Spring Security, Lombok, DTO(Design Pattern),  Tomcat, база данных
-H2. Views - JSTL, CSS.
+В проекте были использованы технологии: Spring MVC, Spring Data, Spring Security, Spring Validation, Lombok, DTO(Design Pattern), Tomcat, база данных
+H2, Mockito, JUnit. Views - JSTL, CSS.
 
 Пользователи по умолчанию: 
 менеджер-логин "manager" пароль "manager";
