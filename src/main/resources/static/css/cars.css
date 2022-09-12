@@ -1,5 +1,5 @@
 body {
-    font-family: "Brush Script MT", sans-serif;
+    font-family: monospace;
     margin: 0;
     padding: 0;
     background-image: linear-gradient(to right bottom, #52565d, #485054, #424a4a, #3e4340, #3b3c38);
@@ -75,25 +75,42 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 30px;
 }
 
-.model-title {
-    text-decoration: underline;
-    color: black;
-    font-size: 50px;
+.container img {
+    text-align: center;
+    width: 500px;
+    height: auto;
 }
 
-.info-about-model {
-    font-family: Gabriola, sans-serif;
-    color: black;
-    font-size: 25px;
-    font-weight: bold;
-    width: 700px;
-    margin-left: 390px;
+table {
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.model-link {
-    font-size: 30px;
-    padding-top: 0px;
-    color: darkorange;
+.table2 {
+    height: 283px;
+    text-align: left;
+    margin-left: 13px;
+    margin-right: 13px;
+}
+
+.model-tr {
+    height: 80px;
+}
+
+.model {
+    font-size: 40px;
+}
+
+.info {
+    color: white;
+    font-size: 20px;
+}
+
+.show-details {
+    text-align: center;
+    text-decoration: none;
+    border-radius: 200px;
+    width: 150px;
 }
 
 .main-page-link {

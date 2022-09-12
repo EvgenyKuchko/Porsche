@@ -11,7 +11,7 @@ INSERT INTO user_role
 VALUES (2, 'USER');
 
 INSERT INTO car
-VALUES (1, 2.9, 'coupe', 9.1, 'four-wheel drive', 3800, 11.8, 7.5, 68.5, 'petrol', 1.28, 'leather', 4.51, 330, 'Turbo', 2,
+VALUES (1, 2.9, 'coupe', 9.1, 'four-wheel drive', 3800, 11.8, 7.5, 68.5, 'petrol', 1.28, 'leather', 4.51, 330, 'Porsche 911 Turbo', 2,
         390, 4, 580, 174300, 7, 'manual', 1600, 2016);
 INSERT INTO pictures
 VALUES (1, '/static/img/models/turbo/turbo1.jpeg', 1);
@@ -26,7 +26,7 @@ VALUES (5, '/static/img/models/turbo/turbo5.jpeg', 1);
 INSERT INTO pictures
 VALUES (6, '/static/img/models/turbo/turbo6.jpeg', 1);
 INSERT INTO car
-VALUES (2, 4.2, 'coupe', 9.0, 'rear wheel drive', 2981, 11.2, 7.7, 64.3, 'petrol', 1.29, 'leather', 4.52, 293, 'Carrera', 2,
+VALUES (2, 4.2, 'coupe', 9.0, 'rear wheel drive', 2981, 11.2, 7.7, 64.3, 'petrol', 1.29, 'leather', 4.52, 293, 'Porsche 911 Carrera', 2,
         455, 4, 385, 118450, 8, 'manual', 1505, 2019);
 INSERT INTO pictures
 VALUES (7, '/static/img/models/carrera/carrera1.jpeg', 2);
@@ -41,7 +41,7 @@ VALUES (11, '/static/img/models/carrera/carrera5.jpeg', 2);
 INSERT INTO pictures
 VALUES (12, '/static/img/models/carrera/carrera6.jpeg', 2);
 INSERT INTO car
-VALUES (3, 5.2, 'CUV', 10.0, 'four-wheel drive', 3604, 13.2, 8.3, 85.0, 'petrol', 1.69, 'leather', 4.86, 262, 'GTS', 5,
+VALUES (3, 5.2, 'CUV', 10.0, 'four-wheel drive', 3604, 13.2, 8.3, 85.0, 'petrol', 1.69, 'leather', 4.86, 262, 'Porsche Cayenne GTS', 5,
         755, 5, 440, 107300, 8, 'manual', 2110, 2014);
 INSERT INTO pictures
 VALUES (13, '/static/img/models/gts/gts1.jpeg', 3);
@@ -56,7 +56,7 @@ VALUES (17, '/static/img/models/gts/gts5.jpeg', 3);
 INSERT INTO pictures
 VALUES (18, '/static/img/models/gts/gts6.jpeg', 3);
 INSERT INTO car
-VALUES (4, 5.0, 'CUV', 9.9, 'four-wheel drive', 2995, 12.3, 8.5, 75.0, 'petrol', 1.68, 'leather', 4.93, 243, 'Coupe', 5,
+VALUES (4, 5.0, 'CUV', 9.9, 'four-wheel drive', 2995, 12.3, 8.5, 75.0, 'petrol', 1.68, 'leather', 4.93, 243, 'Porsche Cayenne Coupe', 5,
         765, 5, 340, 85260, 8, 'automatic', 2030, 2017);
 INSERT INTO pictures
 VALUES (19, '/static/img/models/coupe/coupe1.jpeg', 4);
@@ -71,7 +71,7 @@ VALUES (23, '/static/img/models/coupe/coupe5.jpeg', 4);
 INSERT INTO pictures
 VALUES (24, '/static/img/models/coupe/coupe6.jpeg', 4);
 INSERT INTO car
-VALUES (5, 6.1, 'liftback', 9.3, 'rear wheel drive', 3605, 13.1, 7.1, 80.0, 'petrol', 1.42, 'leather', 4.97, 259, '970', 5,
+VALUES (5, 6.1, 'liftback', 9.3, 'rear wheel drive', 3605, 13.1, 7.1, 80.0, 'petrol', 1.42, 'leather', 4.97, 259, 'Porsche Panamera 970', 5,
         685, 4, 300, 97500, 7, 'automatic', 1760, 2012);
 INSERT INTO pictures
 VALUES (25, '/static/img/models/970/970-1.jpeg', 5);
@@ -86,7 +86,7 @@ VALUES (29, '/static/img/models/970/970-5.jpeg', 5);
 INSERT INTO pictures
 VALUES (30, '/static/img/models/970/970-6.jpeg', 5);
 INSERT INTO car
-VALUES (6, 3.9, 'station wagon', 10.6, 'four-wheel drive', 3996, 14.8, 8.1, 90.0, 'petrol', 1.42, 'leather', 5.05, 289, 'Turismo', 5,
+VALUES (6, 3.9, 'station wagon', 10.6, 'four-wheel drive', 3996, 14.8, 8.1, 90.0, 'petrol', 1.42, 'leather', 5.05, 289, 'Porsche Panamera Turismo', 5,
         590, 5, 460, 138110, 8, 'automatic', 2025, 2018);
 INSERT INTO pictures
 VALUES (31, '/static/img/models/turismo/turismo1.jpeg', 6);

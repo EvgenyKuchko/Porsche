@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CarService {
@@ -19,5 +21,13 @@ public class CarService {
     @Transactional
     public CarDto getCarByModel(String model) {
         return carTransformer.transform(carRepository.findByModel(model));
+    }
+
+    @Transactional
+    public List<CarDto> getAllCars() {
+        return carRepository.findAll()
+                .stream()
+                .map(x -> carTransformer.transform(x))
+                .collect(Collectors.toList());
     }
 }

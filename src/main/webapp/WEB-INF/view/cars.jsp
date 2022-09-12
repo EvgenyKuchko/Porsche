@@ -45,42 +45,51 @@
         </div>
     </div>
 </header>
-<section class="911">
+<section class="cars">
     <div class="container">
-        <h2 class="model-title"><spring:message code="app.model.911"/></h2>
-        <div class="info-about-model">
-            <p>
-                <spring:message code="app.model.911.desc"/>
-            </p>
-        </div>
-        <a href="/model/Turbo" class="model-link"><spring:message code="app.model.911.turbo"/></a> | <a
-            href="/model/Carrera" class="model-link"><spring:message code="app.model.911.carrera"/></a>
-    </div>
-</section>
-<section class="cayenne">
-    <div class="container">
-        <h2 class="model-title"><spring:message code="app.model.cayenne"/></h2>
-        <div class="info-about-model">
-            <p>
-                <spring:message code="app.model.cayenne.desc"/>
-            </p>
-        </div>
-        <a href="/model/GTS" class="model-link"><spring:message code="app.model.cayenne.gts"/></a> | <a
-            href="/model/Coupe" class="model-link"><spring:message code="app.model.cayenne.coupe"/></a>
-    </div>
-</section>
-<section class="panamera">
-    <div class="container">
-        <h2 class="model-title"><spring:message code="app.model.panamera"/></h2>
-        <div class="info-about-model">
-            <p>
-                <spring:message code="app.model.panamera.desc"/>
-            </p>
-        </div>
-        <div class="model-link">
-            <a href="/model/970" class="model-link"><spring:message code="app.model.panamera.970"/></a> | <a
-                href="/model/Turismo" class="model-link"><spring:message code="app.model.panamera.turismo"/></a>
-        </div>
+        <table class="table1">
+            <c:forEach var="car" items="${cars}">
+                <tr>
+                    <td>
+                        <div class="pics-show">
+                            <img src="${car.pics.stream().findFirst().get().filePath}" class="picture"/>
+                        </div>
+                    </td>
+                    <td>
+                        <table class="table2">
+                            <tr class="model-tr">
+                                <td>
+                                    <div class="model">${car.model}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="info">power(ph): ${car.power}</div>
+                                </td>
+                                <td>
+                                    <div class="info">max speed(km/h): ${car.maxSpeed}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="info">year of manuf.: ${car.yearOfManufacture}</div>
+                                </td>
+                                <td>
+                                    <div class="info">price($): ${car.price}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="model/${car.model}">
+                                        <button class="show-details">Show details</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
 </section>
 <section class="main-page">
